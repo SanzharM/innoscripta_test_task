@@ -1,16 +1,12 @@
 # innoscripta_test_task
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Welcome to the take-home challenge for the Flutter mobile developer position. We are
+excited to see your skills and experience in action. The challenge is to build a time
+tracking app for tasks. The app should have the following functional requirements:
+1. A kanban board for tasks, where users can create, edit, and move tasks between
+different columns (e.g. "To Do", "In Progress", "Done").
+2. A timer function that allows users to start and stop tracking the time spent on each
+task.
+3. A history of completed tasks, including the time spent on each task and the date it
+was completed.
+4. A way to export data to CSV file

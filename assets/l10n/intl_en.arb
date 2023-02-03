@@ -1,0 +1,13 @@
+{
+    "add": "Add",
+    "edit": "Edit",
+    "create": "Delete",
+    "remove": "Remove",
+    "delete": "Delete",
+    "home": "Home",
+    "board": "Board",
+    "newBoard": "New board",
+    "howDoYouCallYourBoard": "How do you call your board?",
+    "listIsEmpty": "List is empty"
+
+}

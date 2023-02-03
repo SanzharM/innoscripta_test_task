@@ -1,0 +1,27 @@
+Board
+- id
+- name
+- List<Status> statuses
+- List<Task> tasks
+- createdAt
+- updatedAt
+
+Status
+- id
+- name
+
+Task
+- id
+- name
+- description
+- createdAt
+- updatedAt
+- status
+- List<TimeEntry> entries
+- DateTime deadline
+- FK board_id
+
+TimeEntry
+- startTime
+- endTime
+- description
