@@ -12,19 +12,14 @@ class BoardScreen extends StatefulWidget {
 }
 
 class _BoardScreenState extends State<BoardScreen> {
-  late BoardBloc _bloc;
-  // = BoardBloc(BoardEntity(id: 0, name: ' asdas', createdAt: DateTime.now()));
-
   @override
   void initState() {
-    _bloc = BoardBloc(BoardEntity(id: 0, name: ' asdas', createdAt: DateTime.now()));
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<BoardBloc, BoardState>(
-      bloc: _bloc,
       listener: (context, state) {
         if (state.error.isNotEmpty) {
           return AlertController.showMessage(state.error);

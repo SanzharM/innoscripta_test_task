@@ -21,12 +21,13 @@ class _BoardListBuilderState extends State<BoardListBuilder> {
     return BlocBuilder<BoardListBloc, BoardListState>(
       builder: (context, state) {
         final boards = state.boards;
-        return ListView.builder(
+        return ListView.separated(
           physics: const NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           padding: EdgeInsets.all(AppConstraints.padding),
           primary: false,
           itemCount: boards.length + 1,
+          separatorBuilder: (_, __) => SizedBox(height: AppConstraints.padding),
           itemBuilder: (context, index) {
             bool isLast = index + 1 == boards.length + 1;
             if (isLast) {
@@ -69,7 +70,7 @@ class _BoardCell extends StatelessWidget {
                   boardEntity.name,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
-                SizedBox(height: 4.h),
+                SizedBox(height: 8.h),
                 Text(
                   Utils.formatDate(boardEntity.createdAt) ?? '',
                   style: Theme.of(context).textTheme.bodySmall,
