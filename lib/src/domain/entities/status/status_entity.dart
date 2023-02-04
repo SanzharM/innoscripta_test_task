@@ -1,5 +1,12 @@
+import 'package:hive/hive.dart';
+
+part 'status_entity.g.dart';
+
+@HiveType(typeId: 1)
 class StatusEntity {
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String name;
 
   static const todo = StatusEntity(id: 1, name: 'To do');

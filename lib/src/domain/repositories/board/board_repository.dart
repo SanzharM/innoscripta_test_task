@@ -3,4 +3,12 @@ import 'package:innoscripta_test_task/src/domain/entities/board/board_entity.dar
 
 abstract class BoardRepository {
   Future<PaginatedModel<BoardEntity>> fetchBoards(int page, {int perPage = 10});
+
+  Future<BoardEntity> getBoard(int id);
+
+  Future<bool> addBoard(String name);
+
+  Future<bool> removeBoard(int id);
+
+  Future<bool> updateBoard(BoardEntity boardEntity);
 }

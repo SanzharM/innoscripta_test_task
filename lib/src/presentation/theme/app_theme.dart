@@ -10,6 +10,7 @@ class AppTheme {
   static ThemeData get light {
     const primaryColor = AppColors.greyDark;
     const secondaryColor = AppColors.greyLight;
+    const actionColor = AppColors.orangeDark;
     return ThemeData(
       primaryColor: primaryColor,
       scaffoldBackgroundColor: secondaryColor,
@@ -21,14 +22,17 @@ class AppTheme {
       ),
       textTheme: AppStyles.textTheme,
       iconTheme: const IconThemeData(
-        color: primaryColor,
+        color: actionColor,
       ),
-      cupertinoOverrideTheme: const NoDefaultCupertinoThemeData(
-        primaryColor: primaryColor,
+      cupertinoOverrideTheme: NoDefaultCupertinoThemeData(
+        primaryColor: actionColor,
         scaffoldBackgroundColor: secondaryColor,
         barBackgroundColor: AppColors.transparent,
         textTheme: CupertinoTextThemeData(
-          primaryColor: primaryColor,
+          primaryColor: actionColor,
+          actionTextStyle: AppStyles.bodyLarge.copyWith(
+            color: actionColor,
+          ),
           textStyle: AppStyles.bodyMedium,
         ),
       ),

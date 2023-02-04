@@ -35,12 +35,18 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^1.1.4
   flutter_screenutil: 
+  fluttertoast: ^8.1.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
   # Linter
   flutter_lints: ^2.0.0
+  
+  # Build runners
+  build_runner:
+  hive_generator:
 
 flutter:
   uses-material-design: true

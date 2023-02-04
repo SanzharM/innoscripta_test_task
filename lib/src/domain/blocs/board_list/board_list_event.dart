@@ -4,3 +4,9 @@ part of 'board_list_bloc.dart';
 abstract class BoardListEvent {}
 
 class BoardListFetchEvent extends BoardListEvent {}
+
+class BoardListAddEvent extends BoardListEvent {
+  final String name;
+
+  BoardListAddEvent(this.name);
+}

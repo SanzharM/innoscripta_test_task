@@ -1,6 +1,14 @@
+import 'package:hive/hive.dart';
+
+part 'time_entry_entity.g.dart';
+
+@HiveType(typeId: 0)
 class TimeEntryEntity {
+  @HiveField(0)
   final DateTime startTime;
+  @HiveField(1)
   final DateTime? endTime;
+  @HiveField(2)
   final String? description;
 
   const TimeEntryEntity({

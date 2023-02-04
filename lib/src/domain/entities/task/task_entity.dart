@@ -1,15 +1,28 @@
+import 'package:hive/hive.dart';
 import 'package:innoscripta_test_task/src/domain/entities/status/status_entity.dart';
 import 'package:innoscripta_test_task/src/domain/entities/time_entry/time_entry_entity.dart';
 
+part 'task_entity.g.dart';
+
+@HiveType(typeId: 2)
 class TaskEntity {
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String name;
+  @HiveField(2)
   final String? description;
+  @HiveField(3)
   final DateTime createdAt;
+  @HiveField(4)
   final DateTime? updatedAt;
+  @HiveField(5)
   final DateTime? deadline;
+  @HiveField(6)
   final StatusEntity statusEntity;
+  @HiveField(7)
   final List<TimeEntryEntity> timeEntries;
+  @HiveField(8)
   final int? boardId;
 
   const TaskEntity({

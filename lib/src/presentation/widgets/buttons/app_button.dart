@@ -14,6 +14,7 @@ class AppButton extends StatelessWidget {
     this.backgroundColor,
     this.textColor,
     this.padding,
+    this.alignment = Alignment.center,
   });
 
   final String? title;
@@ -23,19 +24,30 @@ class AppButton extends StatelessWidget {
   final Color? backgroundColor;
   final Color? textColor;
   final EdgeInsets? padding;
+  final Alignment alignment;
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    bool isDisabled = onPressed == null;
     return CupertinoButton(
-      padding: padding ?? EdgeInsets.all(AppConstraints.padding),
+      padding: EdgeInsets.zero,
       onPressed: onPressed,
+      borderRadius: BorderRadius.zero,
+      alignment: alignment,
       child: Container(
+        padding: padding,
         width: double.maxFinite,
         height: 50.h,
+        alignment: alignment,
         decoration: BoxDecoration(
           borderRadius: AppConstraints.borderRadius,
-          color: backgroundColor ?? theme.primaryColor,
+          color: backgroundColor?.withOpacity(
+                isDisabled ? 0.33 : 1,
+              ) ??
+              theme.primaryColor.withOpacity(
+                isDisabled ? 0.33 : 1,
+              ),
         ),
         child: AnimatedSwitcher(
           duration: Utils.animationDuration,

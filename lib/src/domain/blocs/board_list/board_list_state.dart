@@ -10,7 +10,7 @@ class BoardListState {
   const BoardListState({
     this.boards = const [],
     this.page = 1,
-    this.total = -1,
+    this.total = 0,
     this.isLoading = false,
     this.error = '',
   });
@@ -32,4 +32,12 @@ class BoardListState {
       error: error ?? '',
     );
   }
+}
+
+class BoardListAddedState extends BoardListState {
+  const BoardListAddedState({
+    required super.boards,
+    required super.page,
+    required super.total,
+  });
 }

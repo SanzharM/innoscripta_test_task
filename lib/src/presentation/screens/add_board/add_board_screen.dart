@@ -1,8 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:innoscripta_test_task/src/core/constants/constants.dart';
 import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
+import 'package:innoscripta_test_task/src/core/services/alert_controller.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
+import 'package:innoscripta_test_task/src/presentation/app_router.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/app_text_field.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_button.dart';
 
@@ -61,12 +64,31 @@ class _AddBoardScreenState extends State<AddBoardScreen> {
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: Padding(
-          padding: EdgeInsets.all(AppConstraints.padding),
-          child: AppButton(
-            title: L10n.of(context).add,
-            onPressed: () {},
-          ),
+        floatingActionButton: BlocConsumer<BoardListBloc, BoardListState>(
+          listener: (context, state) {
+            if (state is BoardListAddedState) {
+              context.router.back();
+              return AlertController.showMessage(L10n.of(context).boardAdded, isSuccess: true);
+            }
+
+            if (state.error.isNotEmpty) {
+              return AlertController.showMessage(state.error);
+            }
+          },
+          builder: (context, state) {
+            return Padding(
+              padding: EdgeInsets.all(AppConstraints.padding),
+              child: AppButton(
+                title: L10n.of(context).add,
+                isLoading: state.isLoading,
+                onPressed: _controller.text.isEmpty
+                    ? null
+                    : () {
+                        context.read<BoardListBloc>().addBoard(_controller.text);
+                      },
+              ),
+            );
+          },
         ),
       ),
     );

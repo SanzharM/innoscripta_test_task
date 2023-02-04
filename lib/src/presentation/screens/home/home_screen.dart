@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:innoscripta_test_task/src/core/constants/app_constraints.dart';
 import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
-import 'package:innoscripta_test_task/src/core/services/utils.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
-
-import 'components/board_list/board_list_bloc/board_list_bloc.dart';
+import 'package:innoscripta_test_task/src/presentation/screens/home/components/board_list_builder.dart';
+import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_button.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,16 +17,18 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _scrollController = ScrollController();
+  late BoardListBloc _boardsBloc;
 
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(
-      () => Utils.loadMoreListener(
-        controller: _scrollController,
-        onLoading: () => context.read<BoardListBloc>().fetch(),
-      ),
-    );
+    _boardsBloc = context.read<BoardListBloc>();
+    // _scrollController.addListener(
+    //   () => Utils.loadMoreListener(
+    //     controller: _scrollController,
+    //     onLoading: () => context.read<BoardListBloc>().fetch(),
+    //   ),
+    // );
   }
 
   @override
@@ -43,6 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: RefreshIndicator(
         onRefresh: () async {
           await Future.delayed(const Duration(milliseconds: 500));
+          _boardsBloc.fetch();
         },
         child: NestedScrollView(
           physics: const BouncingScrollPhysics(),
@@ -60,14 +64,25 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              CupertinoButton(
-                child: Text(
-                  'Add',
+              AppButton(
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.only(left: AppConstraints.padding),
+                child: Row(
+                  children: [
+                    const Icon(CupertinoIcons.folder_fill_badge_plus),
+                    SizedBox(width: AppConstraints.padding),
+                    Flexible(
+                      child: Text(
+                        L10n.of(context).newBoard,
+                      ),
+                    ),
+                  ],
                 ),
                 onPressed: () {
                   context.router.toAddBoardScreen();
                 },
               ),
+              const BoardListBuilder(),
             ],
           ),
         ),

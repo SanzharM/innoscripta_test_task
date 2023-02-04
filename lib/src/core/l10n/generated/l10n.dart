@@ -130,6 +130,36 @@ class S {
     );
   }
 
+  /// `Board added`
+  String get boardAdded {
+    return Intl.message(
+      'Board added',
+      name: 'boardAdded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Board updated`
+  String get boardUpdated {
+    return Intl.message(
+      'Board updated',
+      name: 'boardUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Board deleted`
+  String get boardDeleted {
+    return Intl.message(
+      'Board deleted',
+      name: 'boardDeleted',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `How do you call your board?`
   String get howDoYouCallYourBoard {
     return Intl.message(

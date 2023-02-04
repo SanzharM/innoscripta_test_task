@@ -7,6 +7,9 @@
     "home": "Home",
     "board": "Board",
     "newBoard": "New board",
+    "boardAdded": "Board added",
+    "boardUpdated": "Board updated",
+    "boardDeleted": "Board deleted",
     "howDoYouCallYourBoard": "How do you call your board?",
     "listIsEmpty": "List is empty"
 

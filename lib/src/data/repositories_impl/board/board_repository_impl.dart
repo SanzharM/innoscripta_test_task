@@ -14,4 +14,24 @@ class BoardRepositoryImpl implements BoardRepository {
   Future<PaginatedModel<BoardEntity>> fetchBoards(int page, {int perPage = 10}) async {
     return dataSource.fetchBoards(page, perPage);
   }
+
+  @override
+  Future<bool> addBoard(String name) {
+    return dataSource.addBoard(name);
+  }
+
+  @override
+  Future<BoardEntity> getBoard(int id) {
+    return dataSource.getBoard(id);
+  }
+
+  @override
+  Future<bool> removeBoard(int id) {
+    return dataSource.removeBoard(id);
+  }
+
+  @override
+  Future<bool> updateBoard(BoardEntity boardEntity) {
+    return dataSource.updateBoard(boardEntity);
+  }
 }

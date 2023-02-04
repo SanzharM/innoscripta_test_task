@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:innoscripta_test_task/src/core/l10n/generated/l10n.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/nav_bar/nav_bar_bloc.dart';
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
-import 'package:innoscripta_test_task/src/presentation/screens/home/components/board_list/board_list_bloc/board_list_bloc.dart';
-import 'package:innoscripta_test_task/src/presentation/screens/nav_bar/bloc/nav_bar_bloc.dart';
 import 'package:innoscripta_test_task/src/presentation/theme/app_theme.dart';
 
 class Application extends StatefulWidget {
@@ -46,6 +46,7 @@ class _ApplicationState extends State<Application> {
             navigatorKey: AppRouter.state,
             routes: AppRouter.routes,
             initialRoute: AppRouter.initialRoute,
+            onGenerateRoute: AppRouter.onGenerateRoute,
 
             // Theme
             theme: AppTheme.light,
