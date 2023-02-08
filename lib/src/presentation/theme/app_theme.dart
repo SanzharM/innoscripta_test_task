@@ -24,6 +24,13 @@ class AppTheme {
       iconTheme: const IconThemeData(
         color: actionColor,
       ),
+      indicatorColor: primaryColor,
+      highlightColor: actionColor,
+      hintColor: primaryColor.withOpacity(0.6),
+      dividerColor: primaryColor.withOpacity(0.2),
+      colorScheme: const ColorScheme.light(
+        onError: AppColors.red,
+      ),
       cupertinoOverrideTheme: NoDefaultCupertinoThemeData(
         primaryColor: actionColor,
         scaffoldBackgroundColor: secondaryColor,

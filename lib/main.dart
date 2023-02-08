@@ -8,6 +8,7 @@ import 'package:innoscripta_test_task/src/service_locator.dart' as di;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.initialize();
+  // await di.sl<HiveStorage>().clear();
   await di.sl<HiveStorage>().initialize();
 
   await SystemChrome.setPreferredOrientations([
@@ -17,9 +18,9 @@ void main() async {
 
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
-      systemNavigationBarIconBrightness: Brightness.light,
-      statusBarIconBrightness: Brightness.light,
-      statusBarBrightness: Brightness.dark,
+      // systemNavigationBarIconBrightness: Brightness.light,
+      // statusBarIconBrightness: Brightness.light,
+      // statusBarBrightness: Brightness.dark,
       statusBarColor: AppColors.transparent,
     ),
   );

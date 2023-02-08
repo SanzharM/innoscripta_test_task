@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/board/board_bloc.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/task/task_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/entities/board/board_entity.dart';
+import 'package:innoscripta_test_task/src/domain/entities/task/task_entity.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/add_board/add_board_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/board/board_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/home/home_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/nav_bar/nav_bar.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/settings/settings_screen.dart';
+import 'package:innoscripta_test_task/src/presentation/screens/task/components/task_description_screen.dart';
+import 'package:innoscripta_test_task/src/presentation/screens/task/task_screen.dart';
 import 'package:innoscripta_test_task/src/service_locator.dart';
 
 extension ContextRouter on BuildContext {
@@ -43,6 +47,20 @@ class AppRouter {
         child: const BoardScreen(),
       );
     },
+    _Routes.task: (_) {
+      final args = ModalRoute.of(_)?.settings.arguments as TaskEntity;
+      return BlocProvider<TaskBloc>(
+        create: (_) => TaskBloc(args),
+        child: const TaskScreen(),
+      );
+    },
+    _Routes.taskDescription: (_) {
+      final args = ModalRoute.of(_)?.settings.arguments as TaskBloc;
+      return BlocProvider<TaskBloc>.value(
+        value: args,
+        child: const TaskDescriptionScreen(),
+      );
+    },
   };
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -55,6 +73,8 @@ class AppRouter {
   void toSettingsScreen() => _navigator.pushNamed(_Routes.settings);
   void toAddBoardScreen() => _navigator.pushNamed(_Routes.addBoard);
   void toBoardScreen(BoardEntity boardEntity) => _navigator.pushNamed(_Routes.board, arguments: boardEntity);
+  Future<void> toTaskScreen(TaskEntity taskEntity) => _navigator.pushNamed(_Routes.task, arguments: taskEntity);
+  Future<void> toTaskDescriptionScreen(TaskBloc bloc) => _navigator.pushNamed(_Routes.taskDescription, arguments: bloc);
 }
 
 class _Routes {
@@ -63,4 +83,6 @@ class _Routes {
   static const addBoard = '/addBoard';
   static const settings = '/settings';
   static const board = '/board';
+  static const task = '/task';
+  static const taskDescription = '/taskDescription';
 }

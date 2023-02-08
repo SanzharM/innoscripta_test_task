@@ -1,7 +1,7 @@
 {
     "add": "Add",
     "edit": "Edit",
-    "create": "Delete",
+    "create": "Create",
     "remove": "Remove",
     "delete": "Delete",
     "home": "Home",
@@ -11,6 +11,16 @@
     "boardUpdated": "Board updated",
     "boardDeleted": "Board deleted",
     "howDoYouCallYourBoard": "How do you call your board?",
+    "newTask": "New task",
+    "task": "Task",
+    "tasks": "Tasks",
+    "taskCreated": "Task created",
+    "taskUpdated": "Task updated",
+    "taskDeleted": "Task deleted",
+    "changeTaskStatus": "Change task status",
+    "description": "Description",
+    "deadline": "Deadline",
+    "createdAt": "Create date",
+    "lastUpdateDate": "Last update date",
     "listIsEmpty": "List is empty"
-
 }

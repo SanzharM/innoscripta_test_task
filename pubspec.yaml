@@ -36,6 +36,8 @@ dependencies:
   flutter_svg: ^1.1.4
   flutter_screenutil: 
   fluttertoast: ^8.1.2
+  boardview: 
+  animated_list_plus: ^0.4.5
 
 dev_dependencies:
   flutter_test:

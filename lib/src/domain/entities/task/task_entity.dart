@@ -24,6 +24,8 @@ class TaskEntity {
   final List<TimeEntryEntity> timeEntries;
   @HiveField(8)
   final int? boardId;
+  @HiveField(9)
+  final bool isFinished;
 
   const TaskEntity({
     required this.id,
@@ -35,7 +37,16 @@ class TaskEntity {
     this.statusEntity = StatusEntity.todo,
     this.timeEntries = const [],
     this.boardId,
+    this.isFinished = false,
   });
+
+  bool get isNotFinished => !isFinished;
+
+  bool get isDeadlinePassed {
+    if (deadline == null) return false;
+    final now = DateTime.now();
+    return deadline!.isBefore(now) && isNotFinished;
+  }
 
   TaskEntity copyWith({
     int? id,
@@ -47,6 +58,7 @@ class TaskEntity {
     StatusEntity? statusEntity,
     List<TimeEntryEntity>? timeEntries,
     int? boardId,
+    bool? isFinished,
   }) {
     return TaskEntity(
       id: id ?? this.id,
@@ -58,12 +70,13 @@ class TaskEntity {
       statusEntity: statusEntity ?? this.statusEntity,
       timeEntries: timeEntries ?? this.timeEntries,
       boardId: boardId ?? this.boardId,
+      isFinished: isFinished ?? this.isFinished,
     );
   }
 
   @override
   String toString() {
-    return 'TaskEntity(id: $id, name: $name, description: $description, createdAt: $createdAt, updatedAt: $updatedAt, deadline: $deadline, statusEntity: $statusEntity, timeEntries: $timeEntries, boardId: $boardId)';
+    return 'TaskEntity(id: $id, name: $name, description: $description, createdAt: $createdAt, updatedAt: $updatedAt, deadline: $deadline, statusEntity: $statusEntity, timeEntries: $timeEntries, boardId: $boardId, isFinished: $isFinished)';
   }
 
   @override
@@ -90,6 +103,7 @@ class TaskEntity {
         deadline.hashCode ^
         statusEntity.hashCode ^
         timeEntries.hashCode ^
-        boardId.hashCode;
+        boardId.hashCode ^
+        isFinished.hashCode;
   }
 }

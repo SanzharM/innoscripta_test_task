@@ -70,10 +70,10 @@ class S {
     );
   }
 
-  /// `Delete`
+  /// `Create`
   String get create {
     return Intl.message(
-      'Delete',
+      'Create',
       name: 'create',
       desc: '',
       args: [],
@@ -165,6 +165,116 @@ class S {
     return Intl.message(
       'How do you call your board?',
       name: 'howDoYouCallYourBoard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New task`
+  String get newTask {
+    return Intl.message(
+      'New task',
+      name: 'newTask',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Task`
+  String get task {
+    return Intl.message(
+      'Task',
+      name: 'task',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tasks`
+  String get tasks {
+    return Intl.message(
+      'Tasks',
+      name: 'tasks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Task created`
+  String get taskCreated {
+    return Intl.message(
+      'Task created',
+      name: 'taskCreated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Task updated`
+  String get taskUpdated {
+    return Intl.message(
+      'Task updated',
+      name: 'taskUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Task deleted`
+  String get taskDeleted {
+    return Intl.message(
+      'Task deleted',
+      name: 'taskDeleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change task status`
+  String get changeTaskStatus {
+    return Intl.message(
+      'Change task status',
+      name: 'changeTaskStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message(
+      'Description',
+      name: 'description',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Deadline`
+  String get deadline {
+    return Intl.message(
+      'Deadline',
+      name: 'deadline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create date`
+  String get createdAt {
+    return Intl.message(
+      'Create date',
+      name: 'createdAt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last update date`
+  String get lastUpdateDate {
+    return Intl.message(
+      'Last update date',
+      name: 'lastUpdateDate',
       desc: '',
       args: [],
     );

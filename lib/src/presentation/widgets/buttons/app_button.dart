@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:innoscripta_test_task/src/core/constants/app_constraints.dart';
+import 'package:innoscripta_test_task/src/core/constants/constants.dart';
 import 'package:innoscripta_test_task/src/core/services/utils.dart';
 
 class AppButton extends StatelessWidget {

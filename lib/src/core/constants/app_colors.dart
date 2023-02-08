@@ -5,6 +5,8 @@ class AppColors {
   static const black = Color(0xFF000000);
   static const transparent = Color(0x00FFFFFF);
 
+  static const red = Color.fromARGB(255, 212, 19, 19);
+
   static const purpleLight = Color(0xff786fa6);
   static const purpleDark = Color(0xff574b90);
 

@@ -8,3 +8,26 @@ class BoardUpdateEvent extends BoardEvent {
 
   BoardUpdateEvent(this.boardEntity);
 }
+
+class BoardRefreshEvent extends BoardEvent {}
+
+class BoardChangeColumnIndexEvent extends BoardEvent {
+  final int index;
+
+  BoardChangeColumnIndexEvent(this.index);
+}
+
+class BoardCreateTaskEvent extends BoardEvent {
+  final String name;
+
+  BoardCreateTaskEvent(this.name);
+}
+
+class BoardFetchEvent extends BoardEvent {}
+
+class BoardReorderEvent extends BoardEvent {
+  final int from;
+  final int to;
+
+  BoardReorderEvent(this.from, this.to);
+}

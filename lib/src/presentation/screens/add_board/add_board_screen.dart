@@ -8,6 +8,7 @@ import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_blo
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/app_text_field.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_button.dart';
+import 'package:innoscripta_test_task/src/presentation/widgets/custom_app_bar.dart';
 
 class AddBoardScreen extends StatefulWidget {
   const AddBoardScreen({super.key});
@@ -38,7 +39,7 @@ class _AddBoardScreenState extends State<AddBoardScreen> {
       onTap: FocusScope.of(context).hasFocus ? () => FocusScope.of(context).unfocus() : null,
       child: Scaffold(
         resizeToAvoidBottomInset: true,
-        appBar: AppBar(),
+        appBar: const CustomAppBar(),
         body: SingleChildScrollView(
           physics: const BouncingScrollPhysics(),
           padding: EdgeInsets.all(AppConstraints.padding),

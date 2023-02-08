@@ -23,7 +23,7 @@ class BoardDataSourceImpl implements BoardDataSource {
     if (box.values.isEmpty) {
       return 0;
     }
-    return box.values.last.id + 1;
+    return box.values.last.id;
   }
 
   @override
@@ -39,7 +39,7 @@ class BoardDataSourceImpl implements BoardDataSource {
   @override
   Future<bool> addBoard(String name) async {
     final value = BoardEntity(
-      id: _getLastId(),
+      id: _getLastId() + 1,
       name: name,
       createdAt: DateTime.now(),
     );

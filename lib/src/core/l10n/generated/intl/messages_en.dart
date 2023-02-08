@@ -27,14 +27,27 @@ class MessageLookup extends MessageLookupByLibrary {
         "boardAdded": MessageLookupByLibrary.simpleMessage("Board added"),
         "boardDeleted": MessageLookupByLibrary.simpleMessage("Board deleted"),
         "boardUpdated": MessageLookupByLibrary.simpleMessage("Board updated"),
-        "create": MessageLookupByLibrary.simpleMessage("Delete"),
+        "changeTaskStatus":
+            MessageLookupByLibrary.simpleMessage("Change task status"),
+        "create": MessageLookupByLibrary.simpleMessage("Create"),
+        "createdAt": MessageLookupByLibrary.simpleMessage("Create date"),
+        "deadline": MessageLookupByLibrary.simpleMessage("Deadline"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+        "description": MessageLookupByLibrary.simpleMessage("Description"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "howDoYouCallYourBoard":
             MessageLookupByLibrary.simpleMessage("How do you call your board?"),
+        "lastUpdateDate":
+            MessageLookupByLibrary.simpleMessage("Last update date"),
         "listIsEmpty": MessageLookupByLibrary.simpleMessage("List is empty"),
         "newBoard": MessageLookupByLibrary.simpleMessage("New board"),
-        "remove": MessageLookupByLibrary.simpleMessage("Remove")
+        "newTask": MessageLookupByLibrary.simpleMessage("New task"),
+        "remove": MessageLookupByLibrary.simpleMessage("Remove"),
+        "task": MessageLookupByLibrary.simpleMessage("Task"),
+        "taskCreated": MessageLookupByLibrary.simpleMessage("Task created"),
+        "taskDeleted": MessageLookupByLibrary.simpleMessage("Task deleted"),
+        "taskUpdated": MessageLookupByLibrary.simpleMessage("Task updated"),
+        "tasks": MessageLookupByLibrary.simpleMessage("Tasks")
       };
 }
