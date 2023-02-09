@@ -23,12 +23,16 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add": MessageLookupByLibrary.simpleMessage("Добавить"),
+        "allLocalDataWillBeDeleted": MessageLookupByLibrary.simpleMessage(
+            "Все сохраненные данные будут удалены"),
         "board": MessageLookupByLibrary.simpleMessage("Доска"),
         "boardAdded": MessageLookupByLibrary.simpleMessage("Доска добавлена"),
         "boardDeleted": MessageLookupByLibrary.simpleMessage("Доска удалена"),
         "boardUpdated": MessageLookupByLibrary.simpleMessage("Доска обновлена"),
         "changeTaskStatus":
             MessageLookupByLibrary.simpleMessage("Изменить статус задачи"),
+        "clearLocalStorage": MessageLookupByLibrary.simpleMessage(
+            "Очистить локальное хранилище"),
         "create": MessageLookupByLibrary.simpleMessage("Создать"),
         "createdAt": MessageLookupByLibrary.simpleMessage("Дата создания"),
         "deadline": MessageLookupByLibrary.simpleMessage("Крайний срок"),
@@ -45,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "listIsEmpty": MessageLookupByLibrary.simpleMessage("Список пуст"),
         "newBoard": MessageLookupByLibrary.simpleMessage("Новая доска"),
         "newTask": MessageLookupByLibrary.simpleMessage("Новая задача"),
+        "no": MessageLookupByLibrary.simpleMessage("Нет"),
         "remove": MessageLookupByLibrary.simpleMessage("Удалить"),
         "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
         "task": MessageLookupByLibrary.simpleMessage("Задача"),
@@ -61,6 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Отслеживание времени начато"),
         "today": MessageLookupByLibrary.simpleMessage("Сегодня"),
         "tomorrow": MessageLookupByLibrary.simpleMessage("Завтра"),
+        "yes": MessageLookupByLibrary.simpleMessage("Да"),
         "yesterday": MessageLookupByLibrary.simpleMessage("Вчера")
       };
 }

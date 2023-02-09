@@ -7,5 +7,7 @@ abstract class TimeEntryRepository {
 
   Future<bool> update(TimeEntryEntity timeEntryEntity);
 
-  Future<List<TimeEntryEntity>> fetchHistory();
+  Future<List<TimeEntryEntity>> getEntries({int? taskId});
+
+  Future<bool> delete(TimeEntryEntity timeEntryEntity);
 }

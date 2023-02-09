@@ -1,8 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:innoscripta_test_task/src/core/constants/app_constraints.dart';
 import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
+import 'package:innoscripta_test_task/src/core/services/alert_controller.dart';
+import 'package:innoscripta_test_task/src/core/storage/hive_storage.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/time_tracking_history/time_tracking_history_bloc.dart';
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
+import 'package:innoscripta_test_task/src/service_locator.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -44,6 +50,28 @@ class _SettingsScreenState extends State<SettingsScreen> {
               title: L10n.of(context).themes,
               onPressed: () {
                 context.router.toThemesScreen();
+              },
+            ),
+            _SettingsElement(
+              leading: const Icon(CupertinoIcons.paintbrush_fill),
+              title: L10n.of(context).clearLocalStorage,
+              onPressed: () {
+                return AlertController.showDecisionDialog(
+                  context: context,
+                  content: L10n.of(context).allLocalDataWillBeDeleted,
+                  onYes: () async {
+                    // await sl<LocalStorage>().clearStorage();
+                    sl<HiveStorage>().reset().then((value) {
+                      context.read<BoardListBloc>()
+                        ..reset()
+                        ..fetch();
+                      context.read<TimeTrackingHistoryBloc>()
+                        ..reset()
+                        ..fetch();
+                      context.router.back();
+                    });
+                  },
+                );
               },
             ),
           ],

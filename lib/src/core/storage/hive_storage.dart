@@ -49,10 +49,10 @@ class HiveStorage {
   }
 
   Future<void> clear() async {
-    // await Hive.deleteBoxFromDisk(boardBox);
-    // await Hive.deleteBoxFromDisk(taskBox);
-    // await Hive.deleteBoxFromDisk(statusBox);
-    // await Hive.deleteBoxFromDisk(timeEntryBox);
+    await Hive.deleteBoxFromDisk(boardBox);
+    await Hive.deleteBoxFromDisk(taskBox);
+    await Hive.deleteBoxFromDisk(statusBox);
+    await Hive.deleteBoxFromDisk(timeEntryBox);
     return await Hive.deleteFromDisk();
   }
 

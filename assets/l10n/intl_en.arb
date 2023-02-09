@@ -32,6 +32,9 @@
     "settings": "Settings",
     "themes": "Themes",
     "languages": "Languages",
-    "language": "Language"
-
+    "language": "Language",
+    "clearLocalStorage": "Clear local storage",
+    "allLocalDataWillBeDeleted": "All local data will be deleted",
+    "yes": "Yes",
+    "no": "No"
 }

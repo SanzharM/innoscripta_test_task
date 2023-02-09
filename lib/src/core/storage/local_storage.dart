@@ -15,6 +15,12 @@ class LocalStorage {
   static const _languageKey = 'InnoscriptaLanguageKey';
   static const _themeKey = 'InnoscriptaThemeKey';
 
+  Future<void> clearStorage() async {
+    await _storage.delete(key: _languageKey);
+    await _storage.delete(key: _themeKey);
+    return await _storage.deleteAll();
+  }
+
   Future<void> setLanguage(Locale locale) {
     return _storage.write(key: _languageKey, value: locale.languageCode);
   }

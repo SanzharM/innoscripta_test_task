@@ -20,6 +20,7 @@ class TimeTrackingWidget extends StatefulWidget {
 
 class _TimeTrackingWidgetState extends State<TimeTrackingWidget> {
   bool isExpanded = true;
+  static const int _maxLength = 4;
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +37,7 @@ class _TimeTrackingWidgetState extends State<TimeTrackingWidget> {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Expanded(
-                  flex: 1,
+                  flex: 2,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -57,24 +58,17 @@ class _TimeTrackingWidgetState extends State<TimeTrackingWidget> {
                                   : Icon(CupertinoIcons.play_circle_fill, size: 48.w),
                         ),
                         onPressed: () {
-                          var entries = List<TimeEntryEntity>.from(task.timeEntries);
                           if (isTicking) {
-                            var activeEntry = entries.last;
-                            entries.removeAt(entries.length - 1);
-                            entries.add(activeEntry.finish());
-                          } else {
-                            entries.add(TimeEntryEntity(startTime: DateTime.now()));
+                            return context.read<TaskBloc>().finishTimeEntry();
                           }
-                          return context.read<TaskBloc>().update(
-                                task.copyWith(timeEntries: entries),
-                              );
+                          return context.read<TaskBloc>().startTimeEntry();
                         },
                       ),
                     ],
                   ),
                 ),
                 Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: AnimatedSwitcher(
                     duration: Utils.animationDuration,
                     child: isTicking
@@ -93,15 +87,15 @@ class _TimeTrackingWidgetState extends State<TimeTrackingWidget> {
               ),
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: task.timeEntries.length > 3 ? 3 : task.timeEntries.length,
+              itemCount: task.timeEntries.length > _maxLength ? _maxLength : task.timeEntries.length,
               itemBuilder: (_, i) {
-                if (i == 2) {
+                if (i + 1 == _maxLength) {
                   return AppIconButton(
                     child: Text('See others'),
                     onPressed: () {},
                   );
                 }
-                final entry = task.timeEntries.elementAt(i);
+                final entry = task.timeEntries.reversed.elementAt(i);
                 return RichText(
                   textDirection: TextDirection.ltr,
                   text: TextSpan(
@@ -113,9 +107,7 @@ class _TimeTrackingWidgetState extends State<TimeTrackingWidget> {
                         ),
                       ),
                       TextSpan(
-                        text: '${Utils.formatDate(entry.startTime, format: 'HH:mm:ss')}'
-                            ' - '
-                            '${Utils.formatDate(entry.endTime, format: 'HH:mm:ss') ?? ' ...'}',
+                        text: entry.readableFormat,
                         style: theme.textTheme.bodyMedium?.apply(),
                       ),
                     ],

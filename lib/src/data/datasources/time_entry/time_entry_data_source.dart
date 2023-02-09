@@ -9,7 +9,9 @@ abstract class TimeEntryDataSource {
 
   Future<bool> update(TimeEntryEntity timeEntryEntity);
 
-  Future<List<TimeEntryEntity>> fetchHistory();
+  Future<List<TimeEntryEntity>> getEntries({int? taskId});
+
+  Future<bool> delete(TimeEntryEntity timeEntryEntity);
 }
 
 class TimeEntryDataSourceImpl implements TimeEntryDataSource {
@@ -57,7 +59,22 @@ class TimeEntryDataSourceImpl implements TimeEntryDataSource {
   }
 
   @override
-  Future<List<TimeEntryEntity>> fetchHistory() async {
-    return box.values.toList();
+  Future<List<TimeEntryEntity>> getEntries({int? taskId}) async {
+    if (taskId == null) {
+      return box.values.toList();
+    }
+    var entries = List<TimeEntryEntity>.from(box.values);
+    return entries.where((e) => e.taskId == taskId).toList();
+  }
+
+  @override
+  Future<bool> delete(TimeEntryEntity timeEntryEntity) async {
+    int index = box.values.toList().indexOf(timeEntryEntity);
+    if (index <= -1) {
+      return false;
+    }
+
+    await box.deleteAt(index);
+    return true;
   }
 }

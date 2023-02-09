@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:innoscripta_test_task/src/core/services/utils.dart';
 
 part 'time_entry_entity.g.dart';
 
@@ -20,19 +21,23 @@ class TimeEntryEntity {
     this.taskId,
   });
 
+  String get readableFormat => '${Utils.formatDate(startTime, format: 'HH:mm:ss')}'
+      ' - '
+      '${Utils.formatDate(endTime, format: 'HH:mm:ss') ?? ' ...'}';
+
   bool get isActive => endTime == null;
 
   bool get isValid => !isInvalid;
 
   bool get isInvalid {
-    if (endTime != null) {
-      if (endTime!.isBefore(startTime)) {
-        return true;
-      }
-      if (endTime!.difference(startTime).inSeconds < 3) {
-        return true;
-      }
+    if (endTime == null) return false;
+
+    if (endTime!.isBefore(startTime)) {
+      return true;
+    } else if (endTime!.difference(startTime).inSeconds < 3) {
+      return true;
     }
+
     return false;
   }
 
@@ -58,7 +63,7 @@ class TimeEntryEntity {
 
     return other is TimeEntryEntity &&
         other.startTime == startTime &&
-        other.endTime == endTime &&
+        // other.endTime == endTime &&
         other.description == description &&
         other.taskId == taskId;
   }

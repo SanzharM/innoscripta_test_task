@@ -20,3 +20,7 @@ class TaskDeleteEvent extends TaskEvent {
 
   TaskDeleteEvent(this.task);
 }
+
+class TaskStartTimeEntryEvent extends TaskEvent {}
+
+class TaskFinishTimeEntryEvent extends TaskEvent {}

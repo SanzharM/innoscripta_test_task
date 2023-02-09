@@ -8,15 +8,21 @@ part 'board_list_event.dart';
 part 'board_list_state.dart';
 
 class BoardListBloc extends Bloc<BoardListEvent, BoardListState> {
+  void reset() => add(BoardListResetEvent());
   void fetch() => add(BoardListFetchEvent());
   void addBoard(String name) => add(BoardListAddEvent(name));
 
   BoardListBloc() : super(const BoardListState()) {
+    on<BoardListResetEvent>(_reset);
     on<BoardListFetchEvent>(_fetch);
     on<BoardListAddEvent>(_addBoard);
   }
 
   final _repository = sl<BoardRepository>();
+
+  void _reset(BoardListResetEvent event, Emitter<BoardListState> emit) async {
+    emit(const BoardListState());
+  }
 
   void _fetch(BoardListFetchEvent event, Emitter<BoardListState> emit) async {
     if (state.isLoading) return;

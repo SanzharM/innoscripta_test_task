@@ -23,7 +23,12 @@ class TimeEntryRepositoryImpl implements TimeEntryRepository {
   }
 
   @override
-  Future<List<TimeEntryEntity>> fetchHistory() {
-    return dataSource.fetchHistory();
+  Future<List<TimeEntryEntity>> getEntries({int? taskId}) {
+    return dataSource.getEntries(taskId: taskId);
+  }
+
+  @override
+  Future<bool> delete(TimeEntryEntity timeEntryEntity) {
+    return dataSource.delete(timeEntryEntity);
   }
 }

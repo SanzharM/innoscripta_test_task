@@ -32,6 +32,9 @@
     "settings": "Настройки",
     "themes": "Темы",
     "languages": "Языки",
-    "language": "Язык"
-
+    "language": "Язык",
+    "clearLocalStorage": "Очистить локальное хранилище",
+    "allLocalDataWillBeDeleted": "Все сохраненные данные будут удалены",
+    "yes": "Да",
+    "no": "Нет"
 }

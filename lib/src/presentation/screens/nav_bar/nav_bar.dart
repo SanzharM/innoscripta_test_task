@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/nav_bar/nav_bar_bloc.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/time_tracking_history/time_tracking_history_bloc.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/home/home_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/settings/settings_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/time_tracking/time_tracking_screen.dart';
@@ -32,7 +33,12 @@ class _NavBarState extends State<NavBar> {
           ),
           bottomNavigationBar: CupertinoTabBar(
             currentIndex: state.currentIndex,
-            onTap: context.read<NavBarBloc>().changeTab,
+            onTap: (index) {
+              if (index == 1 && state.currentIndex != 1) {
+                context.read<TimeTrackingHistoryBloc>().fetch();
+              }
+              context.read<NavBarBloc>().changeTab(index);
+            },
             backgroundColor: Colors.transparent,
             height: 64.h,
             items: const [

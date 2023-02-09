@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:innoscripta_test_task/src/core/constants/app_colors.dart';
@@ -34,7 +32,6 @@ class _ThemesScreenState extends State<ThemesScreen> {
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (context, state) {
-        print(state);
         const customThemes = CustomTheme.appThemes;
         return Scaffold(
           appBar: CustomAppBar(

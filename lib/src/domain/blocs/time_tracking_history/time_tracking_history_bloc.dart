@@ -8,19 +8,25 @@ part 'time_tracking_history_event.dart';
 part 'time_tracking_history_state.dart';
 
 class TimeTrackingHistoryBloc extends Bloc<TimeTrackingHistoryEvent, TimeTrackingHistoryState> {
+  void reset() => add(TimeTrackingHistoryResetEvent());
   void fetch() => add(TimeTrackingHistoryFetchEvent());
 
   TimeTrackingHistoryBloc() : super(const TimeTrackingHistoryState()) {
+    on<TimeTrackingHistoryResetEvent>(_reset);
     on<TimeTrackingHistoryFetchEvent>(_fetch);
   }
 
   final _repository = sl<TimeEntryRepository>();
 
+  void _reset(TimeTrackingHistoryResetEvent event, Emitter<TimeTrackingHistoryState> emit) {
+    emit(const TimeTrackingHistoryState());
+  }
+
   void _fetch(TimeTrackingHistoryFetchEvent event, Emitter<TimeTrackingHistoryState> emit) async {
     emit(state.copyWith(isLoading: true));
 
     try {
-      final response = await _repository.fetchHistory();
+      final response = await _repository.getEntries();
       emit(state.copyWith(isLoading: false, timeEntries: response));
     } catch (e) {
       debugPrint('TimeTrackingHistoryFetchEvent error: $e');

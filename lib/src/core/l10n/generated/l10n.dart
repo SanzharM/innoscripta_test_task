@@ -389,6 +389,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Clear local storage`
+  String get clearLocalStorage {
+    return Intl.message(
+      'Clear local storage',
+      name: 'clearLocalStorage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `All local data will be deleted`
+  String get allLocalDataWillBeDeleted {
+    return Intl.message(
+      'All local data will be deleted',
+      name: 'allLocalDataWillBeDeleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

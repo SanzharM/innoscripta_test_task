@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:innoscripta_test_task/src/core/l10n/generated/l10n.dart';
+import 'package:innoscripta_test_task/src/core/services/utils.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/nav_bar/nav_bar_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/settings/settings_bloc.dart';
@@ -69,7 +70,7 @@ class _ApplicationState extends State<Application> {
                 darkTheme: AppTheme.custom(state.theme),
                 themeMode: state.themeMode,
                 themeAnimationCurve: Curves.bounceInOut,
-                themeAnimationDuration: const Duration(milliseconds: 300),
+                themeAnimationDuration: Utils.animationDuration,
 
                 // Localization
                 locale: state.currentLocale,

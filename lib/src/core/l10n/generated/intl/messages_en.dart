@@ -23,12 +23,16 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add": MessageLookupByLibrary.simpleMessage("Add"),
+        "allLocalDataWillBeDeleted": MessageLookupByLibrary.simpleMessage(
+            "All local data will be deleted"),
         "board": MessageLookupByLibrary.simpleMessage("Board"),
         "boardAdded": MessageLookupByLibrary.simpleMessage("Board added"),
         "boardDeleted": MessageLookupByLibrary.simpleMessage("Board deleted"),
         "boardUpdated": MessageLookupByLibrary.simpleMessage("Board updated"),
         "changeTaskStatus":
             MessageLookupByLibrary.simpleMessage("Change task status"),
+        "clearLocalStorage":
+            MessageLookupByLibrary.simpleMessage("Clear local storage"),
         "create": MessageLookupByLibrary.simpleMessage("Create"),
         "createdAt": MessageLookupByLibrary.simpleMessage("Create date"),
         "deadline": MessageLookupByLibrary.simpleMessage("Deadline"),
@@ -45,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "listIsEmpty": MessageLookupByLibrary.simpleMessage("List is empty"),
         "newBoard": MessageLookupByLibrary.simpleMessage("New board"),
         "newTask": MessageLookupByLibrary.simpleMessage("New task"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "task": MessageLookupByLibrary.simpleMessage("Task"),
@@ -60,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Time tracking started"),
         "today": MessageLookupByLibrary.simpleMessage("Today"),
         "tomorrow": MessageLookupByLibrary.simpleMessage("Tomorrow"),
+        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday")
       };
 }
