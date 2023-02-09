@@ -3,20 +3,22 @@ import 'package:flutter/material.dart';
 class AppStyles {
   static const fontFamily = '';
 
-  static const textTheme = TextTheme(
-    displaySmall: displaySmall,
-    displayMedium: displayMedium,
-    displayLarge: displayLarge,
-    bodySmall: bodySmall,
-    bodyMedium: bodyMedium,
-    bodyLarge: bodyLarge,
-    titleSmall: titleSmall,
-    titleMedium: titleMedium,
-    titleLarge: titleLarge,
-    headlineSmall: headlineSmall,
-    headlineMedium: headlineMedium,
-    headlineLarge: headlineLarge,
-  );
+  static TextTheme textThemeWithColor(Color color) {
+    return TextTheme(
+      displaySmall: displaySmall.apply(color: color),
+      displayMedium: displayMedium.apply(color: color),
+      displayLarge: displayLarge.apply(color: color),
+      bodySmall: bodySmall.apply(color: color),
+      bodyMedium: bodyMedium.apply(color: color),
+      bodyLarge: bodyLarge.apply(color: color),
+      titleSmall: titleSmall.apply(color: color),
+      titleMedium: titleMedium.apply(color: color),
+      titleLarge: titleLarge.apply(color: color),
+      headlineSmall: headlineSmall.apply(color: color),
+      headlineMedium: headlineMedium.apply(color: color),
+      headlineLarge: headlineLarge.apply(color: color),
+    );
+  }
 
   static const displaySmall = TextStyle(fontSize: 11, fontWeight: FontWeight.w400);
   static const displayMedium = TextStyle(fontSize: 12, fontWeight: FontWeight.w500);

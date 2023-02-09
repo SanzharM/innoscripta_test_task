@@ -54,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
               SliverAppBar(
+                pinned: true,
                 title: Text(
                   L10n.of(context).home,
                 ),

@@ -21,4 +21,9 @@ class TimeEntryRepositoryImpl implements TimeEntryRepository {
   Future<bool> update(TimeEntryEntity timeEntryEntity) {
     return dataSource.update(timeEntryEntity);
   }
+
+  @override
+  Future<List<TimeEntryEntity>> fetchHistory() {
+    return dataSource.fetchHistory();
+  }
 }

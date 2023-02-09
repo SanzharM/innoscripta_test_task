@@ -29,5 +29,9 @@
     "yesterday": "Yesterday",
     "tomorrow": "Tomorrow",
     "listIsEmpty": "List is empty",
-    "settings": "Settings"
+    "settings": "Settings",
+    "themes": "Themes",
+    "languages": "Languages",
+    "language": "Language"
+
 }

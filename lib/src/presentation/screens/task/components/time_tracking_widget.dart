@@ -93,8 +93,14 @@ class _TimeTrackingWidgetState extends State<TimeTrackingWidget> {
               ),
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: task.timeEntries.length,
+              itemCount: task.timeEntries.length > 3 ? 3 : task.timeEntries.length,
               itemBuilder: (_, i) {
+                if (i == 2) {
+                  return AppIconButton(
+                    child: Text('See others'),
+                    onPressed: () {},
+                  );
+                }
                 final entry = task.timeEntries.elementAt(i);
                 return RichText(
                   textDirection: TextDirection.ltr,

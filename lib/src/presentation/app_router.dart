@@ -8,7 +8,9 @@ import 'package:innoscripta_test_task/src/presentation/screens/add_board/add_boa
 import 'package:innoscripta_test_task/src/presentation/screens/board/board_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/home/home_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/nav_bar/nav_bar.dart';
+import 'package:innoscripta_test_task/src/presentation/screens/settings/languages_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/settings/settings_screen.dart';
+import 'package:innoscripta_test_task/src/presentation/screens/settings/themes_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/task/components/task_description_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/task/task_screen.dart';
 import 'package:innoscripta_test_task/src/service_locator.dart';
@@ -61,6 +63,8 @@ class AppRouter {
         child: const TaskDescriptionScreen(),
       );
     },
+    _Routes.languages: (_) => const LanguagesScreen(),
+    _Routes.themes: (_) => const ThemesScreen(),
   };
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -75,6 +79,8 @@ class AppRouter {
   void toBoardScreen(BoardEntity boardEntity) => _navigator.pushNamed(_Routes.board, arguments: boardEntity);
   Future<void> toTaskScreen(TaskEntity taskEntity) => _navigator.pushNamed(_Routes.task, arguments: taskEntity);
   Future<void> toTaskDescriptionScreen(TaskBloc bloc) => _navigator.pushNamed(_Routes.taskDescription, arguments: bloc);
+  void toLanguagesScreen() => _navigator.pushNamed(_Routes.languages);
+  void toThemesScreen() => _navigator.pushNamed(_Routes.themes);
 }
 
 class _Routes {
@@ -85,4 +91,6 @@ class _Routes {
   static const board = '/board';
   static const task = '/task';
   static const taskDescription = '/taskDescription';
+  static const languages = 'Languages';
+  static const themes = 'Themes';
 }

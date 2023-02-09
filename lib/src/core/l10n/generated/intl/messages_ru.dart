@@ -22,6 +22,45 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "home": MessageLookupByLibrary.simpleMessage("Главная")
+        "add": MessageLookupByLibrary.simpleMessage("Добавить"),
+        "board": MessageLookupByLibrary.simpleMessage("Доска"),
+        "boardAdded": MessageLookupByLibrary.simpleMessage("Доска добавлена"),
+        "boardDeleted": MessageLookupByLibrary.simpleMessage("Доска удалена"),
+        "boardUpdated": MessageLookupByLibrary.simpleMessage("Доска обновлена"),
+        "changeTaskStatus":
+            MessageLookupByLibrary.simpleMessage("Изменить статус задачи"),
+        "create": MessageLookupByLibrary.simpleMessage("Создать"),
+        "createdAt": MessageLookupByLibrary.simpleMessage("Дата создания"),
+        "deadline": MessageLookupByLibrary.simpleMessage("Крайний срок"),
+        "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
+        "description": MessageLookupByLibrary.simpleMessage("Описание"),
+        "edit": MessageLookupByLibrary.simpleMessage("Изменить"),
+        "home": MessageLookupByLibrary.simpleMessage("Главная"),
+        "howDoYouCallYourBoard":
+            MessageLookupByLibrary.simpleMessage("Как бы вы назвали доску?"),
+        "language": MessageLookupByLibrary.simpleMessage("Язык"),
+        "languages": MessageLookupByLibrary.simpleMessage("Языки"),
+        "lastUpdateDate":
+            MessageLookupByLibrary.simpleMessage("Дата последнего изменения"),
+        "listIsEmpty": MessageLookupByLibrary.simpleMessage("Список пуст"),
+        "newBoard": MessageLookupByLibrary.simpleMessage("Новая доска"),
+        "newTask": MessageLookupByLibrary.simpleMessage("Новая задача"),
+        "remove": MessageLookupByLibrary.simpleMessage("Удалить"),
+        "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
+        "task": MessageLookupByLibrary.simpleMessage("Задача"),
+        "taskCreated": MessageLookupByLibrary.simpleMessage("Задача создана"),
+        "taskDeleted": MessageLookupByLibrary.simpleMessage("Задача удалена"),
+        "taskUpdated": MessageLookupByLibrary.simpleMessage("Задача изменена"),
+        "tasks": MessageLookupByLibrary.simpleMessage("Задачи"),
+        "themes": MessageLookupByLibrary.simpleMessage("Темы"),
+        "timeTracking":
+            MessageLookupByLibrary.simpleMessage("Отслеживание времени"),
+        "timeTrackingFinished": MessageLookupByLibrary.simpleMessage(
+            "Отслеживание времени завершено"),
+        "timeTrackingStarted":
+            MessageLookupByLibrary.simpleMessage("Отслеживание времени начато"),
+        "today": MessageLookupByLibrary.simpleMessage("Сегодня"),
+        "tomorrow": MessageLookupByLibrary.simpleMessage("Завтра"),
+        "yesterday": MessageLookupByLibrary.simpleMessage("Вчера")
       };
 }

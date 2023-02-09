@@ -8,6 +8,8 @@ abstract class TimeEntryDataSource {
   Future<TimeEntryEntity> end(TimeEntryEntity timeEntryEntity);
 
   Future<bool> update(TimeEntryEntity timeEntryEntity);
+
+  Future<List<TimeEntryEntity>> fetchHistory();
 }
 
 class TimeEntryDataSourceImpl implements TimeEntryDataSource {
@@ -52,5 +54,10 @@ class TimeEntryDataSourceImpl implements TimeEntryDataSource {
     await box.deleteAt(index);
     await box.add(timeEntryEntity);
     return true;
+  }
+
+  @override
+  Future<List<TimeEntryEntity>> fetchHistory() async {
+    return box.values.toList();
   }
 }

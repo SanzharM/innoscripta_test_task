@@ -79,7 +79,7 @@ class BoardDataSourceImpl implements BoardDataSource {
     }
 
     box.deleteAt(index);
-    box.add(boardEntity);
+    box.add(boardEntity.copyWith(updatedAt: DateTime.now()));
     return true;
   }
 }

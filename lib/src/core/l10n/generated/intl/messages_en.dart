@@ -38,6 +38,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "howDoYouCallYourBoard":
             MessageLookupByLibrary.simpleMessage("How do you call your board?"),
+        "language": MessageLookupByLibrary.simpleMessage("Language"),
+        "languages": MessageLookupByLibrary.simpleMessage("Languages"),
         "lastUpdateDate":
             MessageLookupByLibrary.simpleMessage("Last update date"),
         "listIsEmpty": MessageLookupByLibrary.simpleMessage("List is empty"),
@@ -50,6 +52,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "taskDeleted": MessageLookupByLibrary.simpleMessage("Task deleted"),
         "taskUpdated": MessageLookupByLibrary.simpleMessage("Task updated"),
         "tasks": MessageLookupByLibrary.simpleMessage("Tasks"),
+        "themes": MessageLookupByLibrary.simpleMessage("Themes"),
         "timeTracking": MessageLookupByLibrary.simpleMessage("Time tracking"),
         "timeTrackingFinished":
             MessageLookupByLibrary.simpleMessage("Time tracking finished"),

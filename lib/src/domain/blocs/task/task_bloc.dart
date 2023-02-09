@@ -44,6 +44,10 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
 
     try {
       var updatedTask = event.task.copyWith(updatedAt: DateTime.now());
+      updatedTask = updatedTask.copyWith(
+        timeEntries: updatedTask.timeEntries.where((e) => e.isValid).toList(),
+      );
+
       final response = await _repository.editTask(updatedTask);
       if (response) {
         return emit(TaskUpdatedState(task: updatedTask, board: state.board));

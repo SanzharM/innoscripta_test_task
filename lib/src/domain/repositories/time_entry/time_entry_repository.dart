@@ -6,4 +6,6 @@ abstract class TimeEntryRepository {
   Future<TimeEntryEntity> end(TimeEntryEntity timeEntryEntity);
 
   Future<bool> update(TimeEntryEntity timeEntryEntity);
+
+  Future<List<TimeEntryEntity>> fetchHistory();
 }

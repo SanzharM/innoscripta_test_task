@@ -40,13 +40,8 @@ class Utils {
   }
 
   static String toTimerFormat(int seconds) {
-    int sec = seconds % 60;
-    int min = (seconds / 60).floor();
-    int hour = (seconds / 60 / 60).floor();
-    String minute = min.toString().length <= 1 ? "0$min" : "$min";
-    String second = sec.toString().length <= 1 ? "0$sec" : "$sec";
-    String hourStr = hour.toString().length <= 1 ? "0$hour" : '$hour';
-    return "$hourStr:$minute:$second";
+    Duration duration = Duration(seconds: seconds);
+    return duration.toHoursMinutesSeconds();
   }
 
   static String toDayPrefix(BuildContext context, DateTime date) {

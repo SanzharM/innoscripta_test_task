@@ -5,7 +5,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:innoscripta_test_task/src/core/l10n/generated/l10n.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/nav_bar/nav_bar_bloc.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/settings/settings_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/time_tracking/time_tracking_bloc.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/time_tracking_history/time_tracking_history_bloc.dart';
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
 import 'package:innoscripta_test_task/src/presentation/theme/app_theme.dart';
 
@@ -32,10 +34,18 @@ class _ApplicationState extends State<Application> {
           create: (_) => NavBarBloc(),
         ),
         BlocProvider<BoardListBloc>(
+          lazy: false,
           create: (_) => BoardListBloc()..fetch(),
         ),
         BlocProvider<TimeTrackingBloc>(
           create: (_) => TimeTrackingBloc(Ticker()),
+        ),
+        BlocProvider<TimeTrackingHistoryBloc>(
+          create: (_) => TimeTrackingHistoryBloc()..fetch(),
+        ),
+        BlocProvider<SettingsBloc>(
+          lazy: false,
+          create: (_) => SettingsBloc()..initial(),
         ),
       ],
       child: ScreenUtilInit(
@@ -43,30 +53,35 @@ class _ApplicationState extends State<Application> {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return MaterialApp(
-            title: Application.title,
+          return BlocBuilder<SettingsBloc, SettingsState>(
+            builder: (context, state) {
+              return MaterialApp(
+                title: Application.title,
 
-            // Routing
-            navigatorKey: AppRouter.state,
-            routes: AppRouter.routes,
-            initialRoute: AppRouter.initialRoute,
-            onGenerateRoute: AppRouter.onGenerateRoute,
+                // Routing
+                navigatorKey: AppRouter.state,
+                routes: AppRouter.routes,
+                initialRoute: AppRouter.initialRoute,
+                onGenerateRoute: AppRouter.onGenerateRoute,
 
-            // Theme
-            theme: AppTheme.light,
-            darkTheme: AppTheme.dark,
-            themeAnimationCurve: Curves.bounceInOut,
-            themeAnimationDuration: const Duration(milliseconds: 300),
+                // Theme
+                theme: AppTheme.custom(state.theme),
+                darkTheme: AppTheme.custom(state.theme),
+                themeMode: state.themeMode,
+                themeAnimationCurve: Curves.bounceInOut,
+                themeAnimationDuration: const Duration(milliseconds: 300),
 
-            // Localization
-            locale: const Locale('en'),
-            supportedLocales: S.delegate.supportedLocales,
-            localizationsDelegates: const [
-              S.delegate,
-              GlobalMaterialLocalizations.delegate,
-              GlobalWidgetsLocalizations.delegate,
-              GlobalCupertinoLocalizations.delegate,
-            ],
+                // Localization
+                locale: state.currentLocale,
+                supportedLocales: S.delegate.supportedLocales,
+                localizationsDelegates: const [
+                  S.delegate,
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+              );
+            },
           );
         },
       ),

@@ -26,7 +26,7 @@ class TaskEntityAdapter extends TypeAdapter<TaskEntity> {
       statusEntity: fields[6] as StatusEntity,
       timeEntries: (fields[7] as List).cast<TimeEntryEntity>(),
       boardId: fields[8] as int?,
-      isFinished: fields[9] as bool,
+      finishTime: fields[9] as DateTime?,
     );
   }
 
@@ -53,7 +53,7 @@ class TaskEntityAdapter extends TypeAdapter<TaskEntity> {
       ..writeByte(8)
       ..write(obj.boardId)
       ..writeByte(9)
-      ..write(obj.isFinished);
+      ..write(obj.finishTime);
   }
 
   @override

@@ -22,6 +22,20 @@ class TimeEntryEntity {
 
   bool get isActive => endTime == null;
 
+  bool get isValid => !isInvalid;
+
+  bool get isInvalid {
+    if (endTime != null) {
+      if (endTime!.isBefore(startTime)) {
+        return true;
+      }
+      if (endTime!.difference(startTime).inSeconds < 3) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   TimeEntryEntity copyWith({
     DateTime? startTime,
     DateTime? endTime,

@@ -59,7 +59,7 @@ class TaskDataSourceImpl implements TaskDataSource {
     }
 
     box.deleteAt(index);
-    box.add(taskEntity);
+    box.add(taskEntity.copyWith(updatedAt: DateTime.now()));
     return true;
   }
 
@@ -70,7 +70,7 @@ class TaskDataSourceImpl implements TaskDataSource {
         return task;
       }
     }
-    throw const TaskNotFoundException();
+    throw const TaskNotFoundException(message: 'Task not found.');
   }
 
   @override
