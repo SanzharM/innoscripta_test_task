@@ -22,5 +22,12 @@
     "deadline": "Deadline",
     "createdAt": "Create date",
     "lastUpdateDate": "Last update date",
-    "listIsEmpty": "List is empty"
+    "timeTracking": "Time tracking",
+    "timeTrackingStarted": "Time tracking started",
+    "timeTrackingFinished": "Time tracking finished",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "tomorrow": "Tomorrow",
+    "listIsEmpty": "List is empty",
+    "settings": "Settings"
 }

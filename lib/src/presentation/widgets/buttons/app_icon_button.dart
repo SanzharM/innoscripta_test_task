@@ -23,7 +23,7 @@ class AppIconButton extends StatelessWidget {
   factory AppIconButton.close(BuildContext context, {void Function()? onPressed}) {
     return AppIconButton(
       onPressed: onPressed ?? () => context.router.back(),
-      child: const Icon(CupertinoIcons.xmark),
+      child: const Icon(CupertinoIcons.xmark_circle_fill),
     );
   }
 

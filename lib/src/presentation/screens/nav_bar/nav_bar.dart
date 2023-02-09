@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/nav_bar/nav_bar_bloc.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/home/home_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/settings/settings_screen.dart';
+import 'package:innoscripta_test_task/src/presentation/screens/time_tracking/time_tracking_screen.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({super.key});
@@ -14,7 +15,11 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-  final tabs = const [HomeScreen(), SettingsScreen()];
+  final tabs = const [
+    HomeScreen(),
+    TimeTrackingScreen(),
+    SettingsScreen(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +38,10 @@ class _NavBarState extends State<NavBar> {
             items: const [
               BottomNavigationBarItem(
                 icon: Icon(CupertinoIcons.house_fill),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(CupertinoIcons.timer),
                 label: '',
               ),
               BottomNavigationBarItem(

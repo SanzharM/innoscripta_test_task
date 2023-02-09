@@ -31,3 +31,20 @@ extension XSortedTaskList on List<TaskEntity> {
     return result;
   }
 }
+
+extension XDateTime on DateTime {
+  bool get isToday {
+    final now = DateTime.now();
+    return now.year == year && now.month == month && now.day == day;
+  }
+
+  bool get isYesterday {
+    final now = DateTime.now();
+    return now.year == year && now.month == month && now.day - 1 == day;
+  }
+
+  bool get isTomorrow {
+    final now = DateTime.now();
+    return now.year == year && now.month == month && now.day + 1 == day;
+  }
+}

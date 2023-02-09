@@ -44,10 +44,19 @@ class MessageLookup extends MessageLookupByLibrary {
         "newBoard": MessageLookupByLibrary.simpleMessage("New board"),
         "newTask": MessageLookupByLibrary.simpleMessage("New task"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "task": MessageLookupByLibrary.simpleMessage("Task"),
         "taskCreated": MessageLookupByLibrary.simpleMessage("Task created"),
         "taskDeleted": MessageLookupByLibrary.simpleMessage("Task deleted"),
         "taskUpdated": MessageLookupByLibrary.simpleMessage("Task updated"),
-        "tasks": MessageLookupByLibrary.simpleMessage("Tasks")
+        "tasks": MessageLookupByLibrary.simpleMessage("Tasks"),
+        "timeTracking": MessageLookupByLibrary.simpleMessage("Time tracking"),
+        "timeTrackingFinished":
+            MessageLookupByLibrary.simpleMessage("Time tracking finished"),
+        "timeTrackingStarted":
+            MessageLookupByLibrary.simpleMessage("Time tracking started"),
+        "today": MessageLookupByLibrary.simpleMessage("Today"),
+        "tomorrow": MessageLookupByLibrary.simpleMessage("Tomorrow"),
+        "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday")
       };
 }

@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
 
-class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+class TimeTrackingScreen extends StatefulWidget {
+  const TimeTrackingScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  State<TimeTrackingScreen> createState() => _TimeTrackingScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(toolbarHeight: 0),
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return <Widget>[
             SliverAppBar(
               title: Text(
-                L10n.of(context).settings,
+                L10n.of(context).timeTracking,
               ),
             ),
           ];

@@ -20,19 +20,22 @@ class TimeEntryEntityAdapter extends TypeAdapter<TimeEntryEntity> {
       startTime: fields[0] as DateTime,
       endTime: fields[1] as DateTime?,
       description: fields[2] as String?,
+      taskId: fields[3] as int?,
     );
   }
 
   @override
   void write(BinaryWriter writer, TimeEntryEntity obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(4)
       ..writeByte(0)
       ..write(obj.startTime)
       ..writeByte(1)
       ..write(obj.endTime)
       ..writeByte(2)
-      ..write(obj.description);
+      ..write(obj.description)
+      ..writeByte(3)
+      ..write(obj.taskId);
   }
 
   @override

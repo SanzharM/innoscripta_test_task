@@ -35,6 +35,7 @@ class TaskDescriptionScreen extends StatelessWidget {
                       textInputType: TextInputType.text,
                       maxLines: null,
                       withBorder: false,
+                      autofocus: true,
                     ),
                   ),
                   SizedBox(height: 100.h),

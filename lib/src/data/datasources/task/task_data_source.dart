@@ -81,6 +81,9 @@ class TaskDataSourceImpl implements TaskDataSource {
         result.add(task);
       }
     }
+    result.sort(
+      (a, b) => (a.updatedAt ?? a.createdAt).compareTo(b.updatedAt ?? b.createdAt),
+    );
     return result;
   }
 }

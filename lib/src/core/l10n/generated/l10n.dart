@@ -280,11 +280,81 @@ class S {
     );
   }
 
+  /// `Time tracking`
+  String get timeTracking {
+    return Intl.message(
+      'Time tracking',
+      name: 'timeTracking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time tracking started`
+  String get timeTrackingStarted {
+    return Intl.message(
+      'Time tracking started',
+      name: 'timeTrackingStarted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time tracking finished`
+  String get timeTrackingFinished {
+    return Intl.message(
+      'Time tracking finished',
+      name: 'timeTrackingFinished',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today`
+  String get today {
+    return Intl.message(
+      'Today',
+      name: 'today',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yesterday`
+  String get yesterday {
+    return Intl.message(
+      'Yesterday',
+      name: 'yesterday',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tomorrow`
+  String get tomorrow {
+    return Intl.message(
+      'Tomorrow',
+      name: 'tomorrow',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `List is empty`
   String get listIsEmpty {
     return Intl.message(
       'List is empty',
       name: 'listIsEmpty',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
       desc: '',
       args: [],
     );

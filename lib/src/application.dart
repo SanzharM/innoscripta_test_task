@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:innoscripta_test_task/src/core/l10n/generated/l10n.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/nav_bar/nav_bar_bloc.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/time_tracking/time_tracking_bloc.dart';
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
 import 'package:innoscripta_test_task/src/presentation/theme/app_theme.dart';
 
@@ -32,6 +33,9 @@ class _ApplicationState extends State<Application> {
         ),
         BlocProvider<BoardListBloc>(
           create: (_) => BoardListBloc()..fetch(),
+        ),
+        BlocProvider<TimeTrackingBloc>(
+          create: (_) => TimeTrackingBloc(Ticker()),
         ),
       ],
       child: ScreenUtilInit(
