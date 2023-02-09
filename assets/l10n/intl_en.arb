@@ -23,6 +23,7 @@
     "createdAt": "Create date",
     "lastUpdateDate": "Last update date",
     "timeTracking": "Time tracking",
+    "history": "History",
     "timeTrackingStarted": "Time tracking started",
     "timeTrackingFinished": "Time tracking finished",
     "today": "Today",
@@ -36,5 +37,6 @@
     "clearLocalStorage": "Clear local storage",
     "allLocalDataWillBeDeleted": "All local data will be deleted",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "more": "Еще"
 }

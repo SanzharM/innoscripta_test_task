@@ -6,8 +6,7 @@ import 'package:innoscripta_test_task/src/core/constants/constants.dart';
 import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
 import 'package:innoscripta_test_task/src/core/services/utils.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/time_tracking/time_tracking_bloc.dart';
-import 'package:innoscripta_test_task/src/domain/blocs/time_tracking_history/time_tracking_history_bloc.dart';
-import 'package:innoscripta_test_task/src/presentation/screens/time_tracking/components/history_time_track_widget.dart';
+import 'package:innoscripta_test_task/src/presentation/screens/time_tracking/components/history_time_track_builder.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_icon_button.dart';
 
 class TimeTrackingScreen extends StatefulWidget {
@@ -48,30 +47,20 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
                 ),
               ];
             },
-            body: BlocBuilder<TimeTrackingHistoryBloc, TimeTrackingHistoryState>(
-              builder: (context, state) {
-                final historyTracks = state.timeEntries;
-                return RefreshIndicator(
-                  onRefresh: () async {
-                    context.read<TimeTrackingHistoryBloc>().fetch();
-                    await Future.delayed(Utils.delayDuration);
-                  },
-                  child: ListView.separated(
-                    physics: const BouncingScrollPhysics(),
-                    padding: EdgeInsets.all(AppConstraints.padding),
-                    itemCount: historyTracks.length,
-                    separatorBuilder: (_, __) => SizedBox(
-                      height: AppConstraints.padding / 2,
-                    ),
-                    itemBuilder: (_, i) {
-                      final timeEntry = historyTracks.elementAt(i);
-                      return HistoryTimeTrackWidget(
-                        timeEntry: timeEntry,
-                      );
-                    },
+            body: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(AppConstraints.padding),
+                  child: Text(
+                    L10n.of(context).history,
+                    style: theme.textTheme.titleLarge,
                   ),
-                );
-              },
+                ),
+                const Expanded(
+                  child: HistoryTimeTracksBuilder(),
+                ),
+              ],
             ),
           ),
           floatingActionButtonLocation: FloatingActionButtonLocation.miniEndDocked,

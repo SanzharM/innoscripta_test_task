@@ -31,6 +31,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   final _timeEntryRepository = sl<TimeEntryRepository>();
 
   void _get(TaskGetEvent event, Emitter<TaskState> emit) async {
+    if (state.isLoading) return;
+
     emit(state.copyWith(isLoading: true));
 
     try {
@@ -54,6 +56,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   }
 
   void _update(TaskUpdateEvent event, Emitter<TaskState> emit) async {
+    if (state.isLoading) return;
+
     emit(state.copyWith(isLoading: true));
 
     try {
@@ -71,6 +75,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   }
 
   void _delete(TaskDeleteEvent event, Emitter<TaskState> emit) async {
+    if (state.isLoading) return;
+
     emit(state.copyWith(isLoading: true));
 
     try {
@@ -85,6 +91,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   }
 
   void _startTimeEntry(TaskStartTimeEntryEvent event, Emitter<TaskState> emit) async {
+    if (state.isLoading) return;
+
     final task = state.task;
     var timeEntries = List<TimeEntryEntity>.from(task.timeEntries).where((e) => e.isValid).toList();
 
@@ -96,6 +104,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   }
 
   void _finishTimeEntry(TaskFinishTimeEntryEvent event, Emitter<TaskState> emit) async {
+    if (state.isLoading) return;
+
     final task = state.task;
     var timeEntries = List<TimeEntryEntity>.from(task.timeEntries).toList();
 

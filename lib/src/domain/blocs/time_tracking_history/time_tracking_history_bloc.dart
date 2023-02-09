@@ -23,8 +23,9 @@ class TimeTrackingHistoryBloc extends Bloc<TimeTrackingHistoryEvent, TimeTrackin
   }
 
   void _fetch(TimeTrackingHistoryFetchEvent event, Emitter<TimeTrackingHistoryState> emit) async {
-    emit(state.copyWith(isLoading: true));
+    if (state.isLoading) return;
 
+    emit(state.copyWith(isLoading: true));
     try {
       final response = await _repository.getEntries();
       emit(state.copyWith(isLoading: false, timeEntries: response));

@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
         "description": MessageLookupByLibrary.simpleMessage("Описание"),
         "edit": MessageLookupByLibrary.simpleMessage("Изменить"),
+        "history": MessageLookupByLibrary.simpleMessage("История"),
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
         "howDoYouCallYourBoard":
             MessageLookupByLibrary.simpleMessage("Как бы вы назвали доску?"),
@@ -47,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastUpdateDate":
             MessageLookupByLibrary.simpleMessage("Дата последнего изменения"),
         "listIsEmpty": MessageLookupByLibrary.simpleMessage("Список пуст"),
+        "more": MessageLookupByLibrary.simpleMessage("More"),
         "newBoard": MessageLookupByLibrary.simpleMessage("Новая доска"),
         "newTask": MessageLookupByLibrary.simpleMessage("Новая задача"),
         "no": MessageLookupByLibrary.simpleMessage("Нет"),

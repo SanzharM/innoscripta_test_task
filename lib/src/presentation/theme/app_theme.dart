@@ -12,14 +12,19 @@ class AppTheme {
     final primaryColor = theme.primaryColor;
     final secondaryColor = theme.secondaryColor;
     final actionColor = theme.activeColor;
+    bool isDark = theme.themeMode == ThemeMode.dark;
     return ThemeData(
       primaryColor: primaryColor,
       scaffoldBackgroundColor: secondaryColor,
       appBarTheme: AppBarTheme(
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        systemOverlayStyle: isDark ? SystemUiOverlayStyle.dark : SystemUiOverlayStyle.light,
         backgroundColor: secondaryColor,
         elevation: 0,
         foregroundColor: primaryColor,
+        titleTextStyle: AppStyles.headlineLarge.copyWith(
+          fontSize: 24.0,
+          color: primaryColor,
+        ),
       ),
       textTheme: AppStyles.textThemeWithColor(primaryColor),
       iconTheme: IconThemeData(
@@ -29,11 +34,17 @@ class AppTheme {
       highlightColor: actionColor,
       hintColor: primaryColor.withOpacity(0.6),
       dividerColor: primaryColor.withOpacity(0.2),
-      colorScheme: ColorScheme.light(
-        onError: AppColors.red,
-        primary: primaryColor,
-        secondary: secondaryColor,
-      ),
+      colorScheme: !isDark
+          ? ColorScheme.dark(
+              onError: AppColors.red,
+              primary: primaryColor,
+              secondary: secondaryColor,
+            )
+          : ColorScheme.light(
+              onError: AppColors.red,
+              primary: primaryColor,
+              secondary: secondaryColor,
+            ),
       cupertinoOverrideTheme: NoDefaultCupertinoThemeData(
         primaryColor: actionColor,
         scaffoldBackgroundColor: secondaryColor,

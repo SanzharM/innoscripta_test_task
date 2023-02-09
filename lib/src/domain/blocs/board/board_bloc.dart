@@ -13,7 +13,6 @@ part 'board_state.dart';
 class BoardBloc extends Bloc<BoardEvent, BoardState> {
   void changeColumnIndex(int index) => add(BoardChangeColumnIndexEvent(index));
   void update(BoardEntity board) => add(BoardUpdateEvent(board));
-  // void refresh() => add(BoardRefreshEvent());
   void createTask(String name) => add(BoardCreateTaskEvent(name));
   void fetch() => add(BoardFetchEvent());
   void reorder(int from, int to) => add(BoardReorderEvent(from, to));
@@ -24,7 +23,6 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
           currentColumnIndex: boardEntity.statuses.isEmpty ? -1 : 0,
         )) {
     on<BoardUpdateEvent>(_updateBoard);
-    on<BoardRefreshEvent>(_refreshBoard);
     on<BoardChangeColumnIndexEvent>(_changeColumnIndex);
     on<BoardCreateTaskEvent>(_createTask);
     on<BoardFetchEvent>(_fetch);
@@ -36,6 +34,8 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
   final _taskRepository = sl<TaskRepository>();
 
   void _updateBoard(BoardUpdateEvent event, Emitter<BoardState> emit) async {
+    if (state.isLoading) return;
+
     emit(state.copyWith(isLoading: true));
 
     try {
@@ -49,17 +49,6 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
       ));
     } catch (e) {
       debugPrint('BoardUpdateEvent error: $e');
-      emit(state.copyWith(isLoading: false, error: e.toString()));
-    }
-  }
-
-  void _refreshBoard(BoardRefreshEvent event, Emitter<BoardState> emit) async {
-    emit(state.copyWith(isLoading: true));
-
-    try {
-      final response = await _repository.getBoard(state.board.id);
-      emit(state.copyWith(isLoading: false, board: response));
-    } catch (e) {
       emit(state.copyWith(isLoading: false, error: e.toString()));
     }
   }
@@ -96,6 +85,8 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
   }
 
   void _fetch(BoardFetchEvent event, Emitter<BoardState> emit) async {
+    if (state.isLoading) return;
+
     emit(state.copyWith(isLoading: true));
 
     try {

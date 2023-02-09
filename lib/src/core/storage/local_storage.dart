@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:innoscripta_test_task/src/domain/entities/custom_theme/custom_theme.dart';
@@ -30,7 +28,7 @@ class LocalStorage {
   }
 
   Future<void> setTheme(CustomTheme theme) {
-    return _storage.write(key: _themeKey, value: jsonEncode(theme.toMap()));
+    return _storage.write(key: _themeKey, value: theme.toJson());
   }
 
   Future<CustomTheme> getTheme() async {
@@ -38,8 +36,6 @@ class LocalStorage {
     if (rawData?.isEmpty ?? true) {
       return CustomTheme.defaultTheme;
     }
-
-    final map = jsonDecode(rawData!) as Map<String, dynamic>;
-    return CustomTheme.fromMap(map);
+    return CustomTheme.fromJson(rawData!);
   }
 }

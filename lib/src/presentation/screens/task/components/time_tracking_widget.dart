@@ -8,8 +8,12 @@ import 'package:innoscripta_test_task/src/core/constants/app_constraints.dart';
 import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
 import 'package:innoscripta_test_task/src/core/services/utils.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/task/task_bloc.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/time_entry/time_entry_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/entities/time_entry/time_entry_entity.dart';
+import 'package:innoscripta_test_task/src/presentation/app_router.dart';
+import 'package:innoscripta_test_task/src/presentation/widgets/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_icon_button.dart';
+import 'package:innoscripta_test_task/src/presentation/widgets/sheet_app_bar.dart';
 
 class TimeTrackingWidget extends StatefulWidget {
   const TimeTrackingWidget({super.key});
@@ -19,7 +23,6 @@ class TimeTrackingWidget extends StatefulWidget {
 }
 
 class _TimeTrackingWidgetState extends State<TimeTrackingWidget> {
-  bool isExpanded = true;
   static const int _maxLength = 4;
 
   @override
@@ -31,40 +34,36 @@ class _TimeTrackingWidgetState extends State<TimeTrackingWidget> {
         bool isTicking = task.timeEntries.isNotEmpty && task.timeEntries.last.isActive;
         return Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            Text(
+              L10n.of(context).timeTracking,
+              style: theme.textTheme.bodyLarge,
+            ),
+            SizedBox(height: AppConstraints.padding),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Expanded(
                   flex: 2,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        L10n.of(context).timeTracking,
-                        style: theme.textTheme.bodyLarge,
-                      ),
-                      SizedBox(height: AppConstraints.padding),
-                      AppIconButton(
-                        child: AnimatedSwitcher(
-                          duration: Utils.animationDuration,
-                          child: state.isLoading
-                              ? CupertinoActivityIndicator(
-                                  color: theme.iconTheme.color,
-                                )
-                              : isTicking
-                                  ? Icon(CupertinoIcons.pause_circle_fill, size: 48.w)
-                                  : Icon(CupertinoIcons.play_circle_fill, size: 48.w),
-                        ),
-                        onPressed: () {
-                          if (isTicking) {
-                            return context.read<TaskBloc>().finishTimeEntry();
-                          }
-                          return context.read<TaskBloc>().startTimeEntry();
-                        },
-                      ),
-                    ],
+                  child: AppIconButton(
+                    child: AnimatedSwitcher(
+                      duration: Utils.animationDuration,
+                      child: state.isLoading
+                          ? CupertinoActivityIndicator(
+                              color: theme.iconTheme.color,
+                            )
+                          : isTicking
+                              ? Icon(CupertinoIcons.pause_circle_fill, size: 48.w)
+                              : Icon(CupertinoIcons.play_circle_fill, size: 48.w),
+                    ),
+                    onPressed: () {
+                      if (isTicking) {
+                        return context.read<TaskBloc>().finishTimeEntry();
+                      }
+                      return context.read<TaskBloc>().startTimeEntry();
+                    },
                   ),
                 ),
                 Expanded(
@@ -91,8 +90,12 @@ class _TimeTrackingWidgetState extends State<TimeTrackingWidget> {
               itemBuilder: (_, i) {
                 if (i + 1 == _maxLength) {
                   return AppIconButton(
-                    child: Text('See others'),
-                    onPressed: () {},
+                    child: Text(
+                      L10n.of(context).more,
+                    ),
+                    onPressed: () {
+                      return showAllTimeEntries(task.timeEntries.reversed);
+                    },
                   );
                 }
                 final entry = task.timeEntries.reversed.elementAt(i);
@@ -118,6 +121,51 @@ class _TimeTrackingWidgetState extends State<TimeTrackingWidget> {
           ],
         );
       },
+    );
+  }
+
+  void showAllTimeEntries(Iterable<TimeEntryEntity> timeEntries) async {
+    return CustomBottomSheet.show<void>(
+      context: context,
+      child: Padding(
+        padding: EdgeInsets.all(AppConstraints.padding),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SheetAppBar(
+              title: L10n.of(context).timeTracking,
+            ),
+            ListView.builder(
+              padding: EdgeInsets.symmetric(
+                vertical: AppConstraints.padding,
+              ),
+              physics: const BouncingScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: timeEntries.length,
+              itemBuilder: (_, i) {
+                final timeEntry = timeEntries.elementAt(i);
+                return CupertinoButton(
+                  onPressed: () {
+                    context.router.toTimeEntryScreen(context.read<TimeEntryBloc>());
+                  },
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        timeEntry.readableFormat,
+                      ),
+                      if (timeEntry.description?.isNotEmpty ?? false)
+                        Text(
+                          timeEntry.description!,
+                        ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

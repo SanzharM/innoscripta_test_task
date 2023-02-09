@@ -9,8 +9,6 @@ class BoardUpdateEvent extends BoardEvent {
   BoardUpdateEvent(this.boardEntity);
 }
 
-class BoardRefreshEvent extends BoardEvent {}
-
 class BoardChangeColumnIndexEvent extends BoardEvent {
   final int index;
 

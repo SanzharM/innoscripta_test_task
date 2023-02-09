@@ -39,6 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+        "history": MessageLookupByLibrary.simpleMessage("History"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "howDoYouCallYourBoard":
             MessageLookupByLibrary.simpleMessage("How do you call your board?"),
@@ -47,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastUpdateDate":
             MessageLookupByLibrary.simpleMessage("Last update date"),
         "listIsEmpty": MessageLookupByLibrary.simpleMessage("List is empty"),
+        "more": MessageLookupByLibrary.simpleMessage("Еще"),
         "newBoard": MessageLookupByLibrary.simpleMessage("New board"),
         "newTask": MessageLookupByLibrary.simpleMessage("New task"),
         "no": MessageLookupByLibrary.simpleMessage("No"),

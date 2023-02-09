@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/board/board_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/task/task_bloc.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/time_entry/time_entry_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/entities/board/board_entity.dart';
 import 'package:innoscripta_test_task/src/domain/entities/task/task_entity.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/add_board/add_board_screen.dart';
@@ -81,6 +82,7 @@ class AppRouter {
   Future<void> toTaskDescriptionScreen(TaskBloc bloc) => _navigator.pushNamed(_Routes.taskDescription, arguments: bloc);
   void toLanguagesScreen() => _navigator.pushNamed(_Routes.languages);
   void toThemesScreen() => _navigator.pushNamed(_Routes.themes);
+  void toTimeEntryScreen(TimeEntryBloc bloc) => _navigator.pushNamed(_Routes.timeEntries, arguments: bloc);
 }
 
 class _Routes {
@@ -91,6 +93,7 @@ class _Routes {
   static const board = '/board';
   static const task = '/task';
   static const taskDescription = '/taskDescription';
-  static const languages = 'Languages';
-  static const themes = 'Themes';
+  static const languages = '/languages';
+  static const themes = '/themes';
+  static const timeEntries = '/timeEntries';
 }

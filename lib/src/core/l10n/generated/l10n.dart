@@ -290,6 +290,16 @@ class S {
     );
   }
 
+  /// `History`
+  String get history {
+    return Intl.message(
+      'History',
+      name: 'history',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Time tracking started`
   String get timeTrackingStarted {
     return Intl.message(
@@ -425,6 +435,16 @@ class S {
     return Intl.message(
       'No',
       name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Еще`
+  String get more {
+    return Intl.message(
+      'Еще',
+      name: 'more',
       desc: '',
       args: [],
     );

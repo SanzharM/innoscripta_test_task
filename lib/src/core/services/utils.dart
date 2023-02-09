@@ -1,4 +1,4 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:innoscripta_test_task/src/core/extensions/extensions.dart';
 import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
 import 'package:intl/intl.dart';
@@ -55,5 +55,16 @@ class Utils {
       return L10n.of(context).tomorrow;
     }
     return formatDate(date) ?? '';
+  }
+
+  static ThemeMode parseThemeMode(String? value) {
+    switch (value?.toLowerCase()) {
+      case 'light':
+        return ThemeMode.light;
+      case 'dark':
+        return ThemeMode.dark;
+      default:
+        return ThemeMode.system;
+    }
   }
 }

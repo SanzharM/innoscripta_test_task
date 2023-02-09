@@ -23,6 +23,7 @@
     "createdAt": "Дата создания",
     "lastUpdateDate": "Дата последнего изменения",
     "timeTracking": "Отслеживание времени",
+    "history": "История",
     "timeTrackingStarted": "Отслеживание времени начато",
     "timeTrackingFinished": "Отслеживание времени завершено",
     "today": "Сегодня",
@@ -36,5 +37,6 @@
     "clearLocalStorage": "Очистить локальное хранилище",
     "allLocalDataWillBeDeleted": "Все сохраненные данные будут удалены",
     "yes": "Да",
-    "no": "Нет"
+    "no": "Нет",
+    "more": "More"
 }
