@@ -121,6 +121,7 @@ class _TimeEntryScreenState extends State<TimeEntryScreen> {
                           controller: _textController,
                           textInputAction: TextInputAction.newline,
                           onTapOutside: (event) {
+                            if (_textController.text.isEmpty) return;
                             if (_textController.text == timeEntry.description) {
                               return;
                             }

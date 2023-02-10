@@ -49,6 +49,10 @@ class TaskEntity {
     return deadline!.isBefore(now) && isNotFinished;
   }
 
+  bool get hasActiveTimeEntry {
+    return timeEntries.any((element) => element.isActive);
+  }
+
   TaskEntity copyWith({
     int? id,
     String? name,

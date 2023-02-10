@@ -70,7 +70,7 @@ class _TimeTrackingWidgetState extends State<TimeTrackingWidget> {
                   child: AnimatedSwitcher(
                     duration: Utils.animationDuration,
                     child: isTicking
-                        ? _SecondsBuilder(
+                        ? SecondsBuilder(
                             timeEntry: task.timeEntries.last,
                           )
                         : const SizedBox(),
@@ -214,19 +214,21 @@ class _TimeTrackingWidgetState extends State<TimeTrackingWidget> {
   }
 }
 
-class _SecondsBuilder extends StatefulWidget {
-  const _SecondsBuilder({
+class SecondsBuilder extends StatefulWidget {
+  const SecondsBuilder({
     Key? key,
     required this.timeEntry,
+    this.textStyle,
   }) : super(key: key);
 
   final TimeEntryEntity timeEntry;
+  final TextStyle? textStyle;
 
   @override
-  State<_SecondsBuilder> createState() => __SecondsBuilderState();
+  State<SecondsBuilder> createState() => _SecondsBuilderState();
 }
 
-class __SecondsBuilderState extends State<_SecondsBuilder> {
+class _SecondsBuilderState extends State<SecondsBuilder> {
   final Stream<int> _secondsStream = Stream<int>.periodic(
     const Duration(seconds: 1),
     (int count) => count,
@@ -261,9 +263,10 @@ class __SecondsBuilderState extends State<_SecondsBuilder> {
       child: Text(
         Utils.toTimerFormat(_seconds),
         textAlign: TextAlign.end,
-        style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-              fontSize: 26,
-            ),
+        style: widget.textStyle ??
+            Theme.of(context).textTheme.headlineLarge?.copyWith(
+                  fontSize: 26,
+                ),
       ),
     );
   }

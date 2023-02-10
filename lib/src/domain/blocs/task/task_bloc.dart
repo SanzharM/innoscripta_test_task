@@ -97,35 +97,43 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   void _startTimeEntry(TaskStartTimeEntryEvent event, Emitter<TaskState> emit) async {
     if (state.isLoading) return;
 
-    final task = state.task;
-    var timeEntries = List<TimeEntryEntity>.from(task.timeEntries).where((e) => e.isValid).toList();
+    try {
+      final task = state.task;
+      var timeEntries = List<TimeEntryEntity>.from(task.timeEntries).where((e) => e.isValid).toList();
 
-    final newTimeEntry = await _timeEntryRepository.start(DateTime.now(), taskId: task.id);
+      final newTimeEntry = await _timeEntryRepository.start(DateTime.now(), taskId: task.id);
 
-    return emit(state.copyWith(
-      task: task.copyWith(timeEntries: timeEntries..add(newTimeEntry)),
-    ));
+      return emit(state.copyWith(
+        task: task.copyWith(timeEntries: timeEntries..add(newTimeEntry)),
+      ));
+    } catch (e) {
+      emit(state.copyWith(isLoading: false, error: e.toString()));
+    }
   }
 
   void _finishTimeEntry(TaskFinishTimeEntryEvent event, Emitter<TaskState> emit) async {
     if (state.isLoading) return;
 
-    final task = state.task;
-    var timeEntries = List<TimeEntryEntity>.from(task.timeEntries).toList();
+    try {
+      final task = state.task;
+      var timeEntries = List<TimeEntryEntity>.from(task.timeEntries).toList();
 
-    if (!timeEntries.last.isActive) return;
+      if (!timeEntries.last.isActive) return;
 
-    timeEntries[timeEntries.length - 1] = timeEntries.last.copyWith(endTime: DateTime.now());
-    if (timeEntries.last.isInvalid) {
-      var temp = timeEntries.removeLast();
-      await _timeEntryRepository.delete(temp);
-    } else {
-      await _timeEntryRepository.update(timeEntries.last);
+      timeEntries[timeEntries.length - 1] = timeEntries.last.copyWith(endTime: DateTime.now());
+      if (timeEntries.last.isInvalid) {
+        var temp = timeEntries.removeLast();
+        await _timeEntryRepository.delete(temp);
+      } else {
+        await _timeEntryRepository.update(timeEntries.last);
+      }
+
+      return emit(state.copyWith(
+        task: task.copyWith(timeEntries: timeEntries),
+      ));
+    } catch (e) {
+      emit(state.copyWith(isLoading: false, error: e.toString()));
     }
-
-    return emit(state.copyWith(
-      task: task.copyWith(timeEntries: timeEntries),
-    ));
   }
 
   void _setAsDone(TaskDoneEvent event, Emitter<TaskState> emit) async {
