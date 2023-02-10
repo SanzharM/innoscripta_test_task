@@ -53,7 +53,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               },
             ),
             _SettingsElement(
-              leading: const Icon(CupertinoIcons.paintbrush_fill),
+              leading: const Icon(CupertinoIcons.floppy_disk),
               title: L10n.of(context).clearLocalStorage,
               onPressed: () {
                 return AlertController.showDecisionDialog(

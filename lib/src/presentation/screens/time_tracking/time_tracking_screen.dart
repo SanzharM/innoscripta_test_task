@@ -54,7 +54,7 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> {
                   padding: EdgeInsets.all(AppConstraints.padding),
                   child: Text(
                     L10n.of(context).history,
-                    style: theme.textTheme.titleLarge,
+                    style: theme.textTheme.headlineSmall,
                   ),
                 ),
                 const Expanded(

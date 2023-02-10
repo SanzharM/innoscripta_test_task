@@ -126,7 +126,12 @@ class _ColumnBuilder extends StatefulWidget {
 class __ColumnBuilderState extends State<_ColumnBuilder> {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<BoardBloc, BoardState>(
+    return BlocConsumer<BoardBloc, BoardState>(
+      listener: (context, state) {
+        if (state.error.isNotEmpty) {
+          return AlertController.showMessage(state.error);
+        }
+      },
       builder: (context, state) {
         final tasks = state.board.tasks.where((e) => e.statusEntity == widget.status).toList();
         return Container(

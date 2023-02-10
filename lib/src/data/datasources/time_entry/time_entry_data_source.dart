@@ -63,8 +63,9 @@ class TimeEntryDataSourceImpl implements TimeEntryDataSource {
     if (taskId == null) {
       return box.values.toList();
     }
-    var entries = List<TimeEntryEntity>.from(box.values);
-    return entries.where((e) => e.taskId == taskId).toList();
+    var entries = List<TimeEntryEntity>.from(box.values).where((e) => e.taskId == taskId).toList();
+    entries.sort((a, b) => a.startTime.compareTo(b.startTime));
+    return entries;
   }
 
   @override

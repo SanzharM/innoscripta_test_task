@@ -33,12 +33,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Изменить статус задачи"),
         "clearLocalStorage": MessageLookupByLibrary.simpleMessage(
             "Очистить локальное хранилище"),
+        "connectToAnotherTask":
+            MessageLookupByLibrary.simpleMessage("Привязать к другой задаче"),
         "create": MessageLookupByLibrary.simpleMessage("Создать"),
         "createdAt": MessageLookupByLibrary.simpleMessage("Дата создания"),
         "deadline": MessageLookupByLibrary.simpleMessage("Крайний срок"),
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
         "description": MessageLookupByLibrary.simpleMessage("Описание"),
         "edit": MessageLookupByLibrary.simpleMessage("Изменить"),
+        "endTime": MessageLookupByLibrary.simpleMessage("Время завершения"),
         "history": MessageLookupByLibrary.simpleMessage("История"),
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
         "howDoYouCallYourBoard":
@@ -48,18 +51,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastUpdateDate":
             MessageLookupByLibrary.simpleMessage("Дата последнего изменения"),
         "listIsEmpty": MessageLookupByLibrary.simpleMessage("Список пуст"),
-        "more": MessageLookupByLibrary.simpleMessage("More"),
+        "more": MessageLookupByLibrary.simpleMessage("Еще"),
         "newBoard": MessageLookupByLibrary.simpleMessage("Новая доска"),
         "newTask": MessageLookupByLibrary.simpleMessage("Новая задача"),
         "no": MessageLookupByLibrary.simpleMessage("Нет"),
+        "options": MessageLookupByLibrary.simpleMessage("Опции"),
         "remove": MessageLookupByLibrary.simpleMessage("Удалить"),
         "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
+        "startTime": MessageLookupByLibrary.simpleMessage("Время начала"),
+        "sureDelete": MessageLookupByLibrary.simpleMessage(
+            "Вы уверены что хотите удалить?"),
         "task": MessageLookupByLibrary.simpleMessage("Задача"),
         "taskCreated": MessageLookupByLibrary.simpleMessage("Задача создана"),
         "taskDeleted": MessageLookupByLibrary.simpleMessage("Задача удалена"),
         "taskUpdated": MessageLookupByLibrary.simpleMessage("Задача изменена"),
         "tasks": MessageLookupByLibrary.simpleMessage("Задачи"),
         "themes": MessageLookupByLibrary.simpleMessage("Темы"),
+        "timeEntries": MessageLookupByLibrary.simpleMessage("Точки времени"),
+        "timeEntry": MessageLookupByLibrary.simpleMessage("Точка времени"),
+        "timeEntryDeleted":
+            MessageLookupByLibrary.simpleMessage("Точка времени удалена"),
+        "timeEntryUpdated":
+            MessageLookupByLibrary.simpleMessage("Точка времени обновлена"),
         "timeTracking":
             MessageLookupByLibrary.simpleMessage("Отслеживание времени"),
         "timeTrackingFinished": MessageLookupByLibrary.simpleMessage(

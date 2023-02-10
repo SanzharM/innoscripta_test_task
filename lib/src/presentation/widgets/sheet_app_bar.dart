@@ -47,6 +47,7 @@ class SheetAppBar extends StatelessWidget {
             AppIconButton.close(context),
           ],
         ),
+        const Divider(),
       ],
     );
   }

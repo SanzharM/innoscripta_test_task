@@ -38,5 +38,14 @@
     "allLocalDataWillBeDeleted": "All local data will be deleted",
     "yes": "Yes",
     "no": "No",
-    "more": "Еще"
+    "more": "More",
+    "timeEntry": "Time entry",
+    "timeEntries": "Time entries",
+    "timeEntryUpdated": "Time entry updated",
+    "timeEntryDeleted": "Time entry deleted",
+    "startTime": "Start time",
+    "endTime": "End time",
+    "options": "Options",
+    "sureDelete": "Are you sure you want to delete?",
+    "connectToAnotherTask": "Connect to another task"
 }

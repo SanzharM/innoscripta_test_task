@@ -5,6 +5,7 @@ import 'package:innoscripta_test_task/src/domain/blocs/task/task_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/time_entry/time_entry_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/entities/board/board_entity.dart';
 import 'package:innoscripta_test_task/src/domain/entities/task/task_entity.dart';
+import 'package:innoscripta_test_task/src/domain/entities/time_entry/time_entry_entity.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/add_board/add_board_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/board/board_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/home/home_screen.dart';
@@ -14,6 +15,7 @@ import 'package:innoscripta_test_task/src/presentation/screens/settings/settings
 import 'package:innoscripta_test_task/src/presentation/screens/settings/themes_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/task/components/task_description_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/task/task_screen.dart';
+import 'package:innoscripta_test_task/src/presentation/screens/time_tracking/components/time_entry_screen.dart';
 import 'package:innoscripta_test_task/src/service_locator.dart';
 
 extension ContextRouter on BuildContext {
@@ -64,6 +66,13 @@ class AppRouter {
         child: const TaskDescriptionScreen(),
       );
     },
+    _Routes.timeEntries: (_) {
+      final args = ModalRoute.of(_)?.settings.arguments as TimeEntryEntity;
+      return BlocProvider<TimeEntryBloc>(
+        create: (_) => TimeEntryBloc(args),
+        child: const TimeEntryScreen(),
+      );
+    },
     _Routes.languages: (_) => const LanguagesScreen(),
     _Routes.themes: (_) => const ThemesScreen(),
   };
@@ -82,7 +91,7 @@ class AppRouter {
   Future<void> toTaskDescriptionScreen(TaskBloc bloc) => _navigator.pushNamed(_Routes.taskDescription, arguments: bloc);
   void toLanguagesScreen() => _navigator.pushNamed(_Routes.languages);
   void toThemesScreen() => _navigator.pushNamed(_Routes.themes);
-  void toTimeEntryScreen(TimeEntryBloc bloc) => _navigator.pushNamed(_Routes.timeEntries, arguments: bloc);
+  Future<void> toTimeEntryScreen(TimeEntryEntity timeEntry) => _navigator.pushNamed(_Routes.timeEntries, arguments: timeEntry);
 }
 
 class _Routes {

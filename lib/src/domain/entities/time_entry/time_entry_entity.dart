@@ -64,7 +64,7 @@ class TimeEntryEntity {
     return other is TimeEntryEntity &&
         other.startTime == startTime &&
         // other.endTime == endTime &&
-        other.description == description &&
+        // other.description == description &&
         other.taskId == taskId;
   }
 

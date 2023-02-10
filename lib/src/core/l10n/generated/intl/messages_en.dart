@@ -33,12 +33,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Change task status"),
         "clearLocalStorage":
             MessageLookupByLibrary.simpleMessage("Clear local storage"),
+        "connectToAnotherTask":
+            MessageLookupByLibrary.simpleMessage("Connect to another task"),
         "create": MessageLookupByLibrary.simpleMessage("Create"),
         "createdAt": MessageLookupByLibrary.simpleMessage("Create date"),
         "deadline": MessageLookupByLibrary.simpleMessage("Deadline"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
+        "endTime": MessageLookupByLibrary.simpleMessage("End time"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "howDoYouCallYourBoard":
@@ -48,18 +51,28 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastUpdateDate":
             MessageLookupByLibrary.simpleMessage("Last update date"),
         "listIsEmpty": MessageLookupByLibrary.simpleMessage("List is empty"),
-        "more": MessageLookupByLibrary.simpleMessage("Еще"),
+        "more": MessageLookupByLibrary.simpleMessage("More"),
         "newBoard": MessageLookupByLibrary.simpleMessage("New board"),
         "newTask": MessageLookupByLibrary.simpleMessage("New task"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
+        "options": MessageLookupByLibrary.simpleMessage("Options"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
+        "startTime": MessageLookupByLibrary.simpleMessage("Start time"),
+        "sureDelete": MessageLookupByLibrary.simpleMessage(
+            "Are you sure you want to delete?"),
         "task": MessageLookupByLibrary.simpleMessage("Task"),
         "taskCreated": MessageLookupByLibrary.simpleMessage("Task created"),
         "taskDeleted": MessageLookupByLibrary.simpleMessage("Task deleted"),
         "taskUpdated": MessageLookupByLibrary.simpleMessage("Task updated"),
         "tasks": MessageLookupByLibrary.simpleMessage("Tasks"),
         "themes": MessageLookupByLibrary.simpleMessage("Themes"),
+        "timeEntries": MessageLookupByLibrary.simpleMessage("Time entries"),
+        "timeEntry": MessageLookupByLibrary.simpleMessage("Time entry"),
+        "timeEntryDeleted":
+            MessageLookupByLibrary.simpleMessage("Time entry deleted"),
+        "timeEntryUpdated":
+            MessageLookupByLibrary.simpleMessage("Time entry updated"),
         "timeTracking": MessageLookupByLibrary.simpleMessage("Time tracking"),
         "timeTrackingFinished":
             MessageLookupByLibrary.simpleMessage("Time tracking finished"),

@@ -38,5 +38,14 @@
     "allLocalDataWillBeDeleted": "Все сохраненные данные будут удалены",
     "yes": "Да",
     "no": "Нет",
-    "more": "More"
+    "more": "Еще",
+    "timeEntry": "Точка времени",
+    "timeEntries": "Точки времени",
+    "timeEntryUpdated": "Точка времени обновлена",
+    "timeEntryDeleted": "Точка времени удалена",
+    "startTime": "Время начала",
+    "endTime": "Время завершения",
+    "options": "Опции",
+    "sureDelete": "Вы уверены что хотите удалить?",
+    "connectToAnotherTask": "Привязать к другой задаче"
 }

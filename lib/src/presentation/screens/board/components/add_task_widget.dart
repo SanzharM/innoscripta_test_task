@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:innoscripta_test_task/src/core/constants/app_constraints.dart';
 import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
+import 'package:innoscripta_test_task/src/core/services/alert_controller.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/board/board_bloc.dart';
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/app_text_field.dart';
@@ -37,7 +38,11 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
     return BlocConsumer<BoardBloc, BoardState>(
       listener: (context, state) {
         if (state is BoardCreatedState) {
-          return context.router.back();
+          context.router.back();
+          return AlertController.showMessage(
+            L10n.of(context).taskCreated,
+            isSuccess: true,
+          );
         }
       },
       builder: (context, state) {

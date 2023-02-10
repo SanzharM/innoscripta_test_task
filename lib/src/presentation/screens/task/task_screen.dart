@@ -98,7 +98,6 @@ class _TaskScreenState extends State<TaskScreen> {
                           const Divider(),
                           SizedBox(height: AppConstraints.padding),
                           const TimeTrackingWidget(),
-                          SizedBox(height: AppConstraints.padding),
                           const Divider(),
                           _Element(
                             title: L10n.of(context).description,

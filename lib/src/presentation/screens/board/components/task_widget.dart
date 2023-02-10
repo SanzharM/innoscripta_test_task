@@ -35,7 +35,7 @@ class TaskWidget extends StatelessWidget {
           maxLines: 3,
         ),
       ),
-      onPressed: () async {
+      onPressed: () {
         context.router.toTaskScreen(task).then(
               (value) => context.read<BoardBloc>().fetch(),
             );

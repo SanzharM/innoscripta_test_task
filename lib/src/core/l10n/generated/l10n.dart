@@ -440,11 +440,101 @@ class S {
     );
   }
 
-  /// `Еще`
+  /// `More`
   String get more {
     return Intl.message(
-      'Еще',
+      'More',
       name: 'more',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time entry`
+  String get timeEntry {
+    return Intl.message(
+      'Time entry',
+      name: 'timeEntry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time entries`
+  String get timeEntries {
+    return Intl.message(
+      'Time entries',
+      name: 'timeEntries',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time entry updated`
+  String get timeEntryUpdated {
+    return Intl.message(
+      'Time entry updated',
+      name: 'timeEntryUpdated',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Time entry deleted`
+  String get timeEntryDeleted {
+    return Intl.message(
+      'Time entry deleted',
+      name: 'timeEntryDeleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start time`
+  String get startTime {
+    return Intl.message(
+      'Start time',
+      name: 'startTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `End time`
+  String get endTime {
+    return Intl.message(
+      'End time',
+      name: 'endTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Options`
+  String get options {
+    return Intl.message(
+      'Options',
+      name: 'options',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to delete?`
+  String get sureDelete {
+    return Intl.message(
+      'Are you sure you want to delete?',
+      name: 'sureDelete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connect to another task`
+  String get connectToAnotherTask {
+    return Intl.message(
+      'Connect to another task',
+      name: 'connectToAnotherTask',
       desc: '',
       args: [],
     );
