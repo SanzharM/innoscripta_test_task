@@ -17,6 +17,7 @@
     "taskCreated": "Task created",
     "taskUpdated": "Task updated",
     "taskDeleted": "Task deleted",
+    "taskDone":"Task is done",
     "changeTaskStatus": "Change task status",
     "description": "Description",
     "deadline": "Deadline",
@@ -45,6 +46,7 @@
     "timeEntryDeleted": "Time entry deleted",
     "startTime": "Start time",
     "endTime": "End time",
+    "finishTime": "Finish time",
     "options": "Options",
     "sureDelete": "Are you sure you want to delete?",
     "connectToAnotherTask": "Connect to another task"

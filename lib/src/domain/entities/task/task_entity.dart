@@ -75,6 +75,21 @@ class TaskEntity {
     );
   }
 
+  TaskEntity clearFinishTime() {
+    return TaskEntity(
+      id: id,
+      name: name,
+      description: description,
+      createdAt: createdAt,
+      updatedAt: updatedAt,
+      deadline: deadline,
+      statusEntity: statusEntity,
+      timeEntries: timeEntries,
+      boardId: boardId,
+      finishTime: null,
+    );
+  }
+
   @override
   String toString() {
     return 'TaskEntity(id: $id, name: $name, description: $description, createdAt: $createdAt, updatedAt: $updatedAt, deadline: $deadline, statusEntity: $statusEntity, timeEntries: $timeEntries, boardId: $boardId, finishTime: $finishTime)';

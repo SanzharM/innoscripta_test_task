@@ -42,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "endTime": MessageLookupByLibrary.simpleMessage("End time"),
+        "finishTime": MessageLookupByLibrary.simpleMessage("Finish time"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "howDoYouCallYourBoard":
@@ -64,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "task": MessageLookupByLibrary.simpleMessage("Task"),
         "taskCreated": MessageLookupByLibrary.simpleMessage("Task created"),
         "taskDeleted": MessageLookupByLibrary.simpleMessage("Task deleted"),
+        "taskDone": MessageLookupByLibrary.simpleMessage("Task is done"),
         "taskUpdated": MessageLookupByLibrary.simpleMessage("Task updated"),
         "tasks": MessageLookupByLibrary.simpleMessage("Tasks"),
         "themes": MessageLookupByLibrary.simpleMessage("Themes"),

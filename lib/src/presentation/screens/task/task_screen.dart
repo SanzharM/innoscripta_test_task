@@ -44,6 +44,20 @@ class _TaskScreenState extends State<TaskScreen> {
         if (state.error.isNotEmpty) {
           return AlertController.showMessage(state.error);
         }
+        if (state is TaskDeletedState) {
+          context.router.back();
+          return AlertController.showMessage(
+            L10n.of(context).taskDeleted,
+            isSuccess: true,
+          );
+        }
+        if (state is TaskDoneState) {
+          context.router.back();
+          return AlertController.showMessage(
+            L10n.of(context).taskDone,
+            isSuccess: true,
+          );
+        }
       },
       builder: (context, state) {
         final task = state.task;
@@ -83,6 +97,25 @@ class _TaskScreenState extends State<TaskScreen> {
                             leading: Icon(
                               CupertinoIcons.clock_solid,
                               color: task.isDeadlinePassed ? theme.colorScheme.onError : null,
+                            ),
+                            onPressed: () async {
+                              final picker = DatePickerWidget(
+                                context: context,
+                                initialDate: task.deadline,
+                                minDate: DateTime.now(),
+                              );
+                              picker.show().then((date) {
+                                context.read<TaskBloc>().update(task.copyWith(deadline: date));
+                              });
+                            },
+                          ),
+                          SizedBox(height: AppConstraints.padding),
+                          _Element(
+                            title: L10n.of(context).finishTime,
+                            value: Utils.formatDate(task.finishTime) ?? '-',
+                            leading: Icon(
+                              task.isFinished ? CupertinoIcons.checkmark_alt_circle_fill : CupertinoIcons.time_solid,
+                              color: task.isFinished ? theme.highlightColor : theme.hintColor,
                             ),
                             onPressed: () async {
                               final picker = DatePickerWidget(
@@ -289,7 +322,16 @@ class _CurrentStatus extends StatelessWidget {
                   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                   textColor: Theme.of(context).highlightColor,
                   onPressed: () {
-                    context.read<TaskBloc>().update(task.copyWith(statusEntity: status));
+                    var updatedTask = task.copyWith(statusEntity: status);
+                    if (availableStatuses.last == status) {
+                      context.read<TaskBloc>().setAsDone(
+                            updatedTask,
+                          );
+                    } else {
+                      context.read<TaskBloc>().update(
+                            updatedTask.clearFinishTime(),
+                          );
+                    }
                     context.router.back();
                   },
                 );

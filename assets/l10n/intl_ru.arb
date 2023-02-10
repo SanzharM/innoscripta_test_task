@@ -17,6 +17,7 @@
     "taskCreated": "Задача создана",
     "taskUpdated": "Задача изменена",
     "taskDeleted": "Задача удалена",
+    "taskDone": "Задача выполнена",
     "changeTaskStatus": "Изменить статус задачи",
     "description": "Описание",
     "deadline": "Крайний срок",
@@ -45,6 +46,7 @@
     "timeEntryDeleted": "Точка времени удалена",
     "startTime": "Время начала",
     "endTime": "Время завершения",
+    "finishTime": "Время завершения",
     "options": "Опции",
     "sureDelete": "Вы уверены что хотите удалить?",
     "connectToAnotherTask": "Привязать к другой задаче"

@@ -17,6 +17,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   void delete(TaskEntity task) => add(TaskDeleteEvent(task));
   void startTimeEntry() => add(TaskStartTimeEntryEvent());
   void finishTimeEntry() => add(TaskFinishTimeEntryEvent());
+  void setAsDone(TaskEntity task) => add(TaskDoneEvent(task));
 
   TaskBloc(TaskEntity task) : super(TaskState(task: task)) {
     on<TaskGetEvent>(_get);
@@ -24,6 +25,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<TaskDeleteEvent>(_delete);
     on<TaskStartTimeEntryEvent>(_startTimeEntry);
     on<TaskFinishTimeEntryEvent>(_finishTimeEntry);
+    on<TaskDoneEvent>(_setAsDone);
   }
 
   final _repository = sl<TaskRepository>();
@@ -63,7 +65,9 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     try {
       var timeEntries = event.task.timeEntries.where((e) => e.isValid).toList();
       var updatedTask = event.task.copyWith(updatedAt: DateTime.now(), timeEntries: timeEntries);
-      final response = await _repository.editTask(updatedTask.copyWith(timeEntries: []));
+      final response = await _repository.editTask(
+        updatedTask.copyWith(timeEntries: []),
+      );
 
       if (response) {
         return emit(TaskUpdatedState(task: updatedTask, board: state.board));
@@ -122,5 +126,32 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     return emit(state.copyWith(
       task: task.copyWith(timeEntries: timeEntries),
     ));
+  }
+
+  void _setAsDone(TaskDoneEvent event, Emitter<TaskState> emit) async {
+    if (state.isLoading) return;
+
+    try {
+      var task = event.task.copyWith(
+        finishTime: DateTime.now(),
+        updatedAt: DateTime.now(),
+      );
+      final response = await _repository.editTask(task);
+      if (response) {
+        if (task.timeEntries.any((e) => e.isActive)) {
+          for (var timeEntry in task.timeEntries.where((e) => e.isActive)) {
+            await _timeEntryRepository.end(timeEntry);
+          }
+        }
+        return emit(TaskDoneState(task: task, board: state.board));
+      }
+      emit(state.copyWith(
+        isLoading: false,
+        error: 'Something went wrong. Unable to set ${task.name} as done',
+      ));
+    } catch (e) {
+      debugPrint('TaskDoneEvent error: $e');
+      emit(state.copyWith(isLoading: false, error: e.toString()));
+    }
   }
 }

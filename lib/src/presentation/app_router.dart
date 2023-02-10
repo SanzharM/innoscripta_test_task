@@ -37,6 +37,7 @@ class AppRouter {
   }
 
   void back() => _navigator.canPop() ? _navigator.pop() : null;
+  void popUntil(bool Function(Route<dynamic> route) predicate) => _navigator.popUntil(predicate);
 
   // ROUTING
   static final initialRoute = routes.keys.first;

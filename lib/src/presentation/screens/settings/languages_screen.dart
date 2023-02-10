@@ -45,7 +45,7 @@ class _LanguagesScreenState extends State<LanguagesScreen> {
             itemCount: supportedLocales.length,
             itemBuilder: (_, i) {
               final locale = supportedLocales.elementAt(i);
-              final isSelected = locale == state.currentLocale;
+              final isSelected = locale.languageCode == state.currentLocale.languageCode;
               return CupertinoButton(
                 padding: EdgeInsets.zero,
                 onPressed: () {

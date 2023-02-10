@@ -53,3 +53,10 @@ class TaskDeletedState extends TaskState {
     super.board,
   });
 }
+
+class TaskDoneState extends TaskState {
+  TaskDoneState({
+    required super.task,
+    super.board,
+  });
+}

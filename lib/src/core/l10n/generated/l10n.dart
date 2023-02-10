@@ -230,6 +230,16 @@ class S {
     );
   }
 
+  /// `Task is done`
+  String get taskDone {
+    return Intl.message(
+      'Task is done',
+      name: 'taskDone',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Change task status`
   String get changeTaskStatus {
     return Intl.message(
@@ -505,6 +515,16 @@ class S {
     return Intl.message(
       'End time',
       name: 'endTime',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Finish time`
+  String get finishTime {
+    return Intl.message(
+      'Finish time',
+      name: 'finishTime',
       desc: '',
       args: [],
     );

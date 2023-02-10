@@ -24,3 +24,9 @@ class TaskDeleteEvent extends TaskEvent {
 class TaskStartTimeEntryEvent extends TaskEvent {}
 
 class TaskFinishTimeEntryEvent extends TaskEvent {}
+
+class TaskDoneEvent extends TaskEvent {
+  final TaskEntity task;
+
+  TaskDoneEvent(this.task);
+}

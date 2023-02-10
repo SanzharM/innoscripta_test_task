@@ -42,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "description": MessageLookupByLibrary.simpleMessage("Описание"),
         "edit": MessageLookupByLibrary.simpleMessage("Изменить"),
         "endTime": MessageLookupByLibrary.simpleMessage("Время завершения"),
+        "finishTime": MessageLookupByLibrary.simpleMessage("Время завершения"),
         "history": MessageLookupByLibrary.simpleMessage("История"),
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
         "howDoYouCallYourBoard":
@@ -64,6 +65,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "task": MessageLookupByLibrary.simpleMessage("Задача"),
         "taskCreated": MessageLookupByLibrary.simpleMessage("Задача создана"),
         "taskDeleted": MessageLookupByLibrary.simpleMessage("Задача удалена"),
+        "taskDone": MessageLookupByLibrary.simpleMessage("Задача выполнена"),
         "taskUpdated": MessageLookupByLibrary.simpleMessage("Задача изменена"),
         "tasks": MessageLookupByLibrary.simpleMessage("Задачи"),
         "themes": MessageLookupByLibrary.simpleMessage("Темы"),
