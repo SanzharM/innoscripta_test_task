@@ -5,6 +5,7 @@ import 'package:innoscripta_test_task/src/core/constants/app_constraints.dart';
 import 'package:innoscripta_test_task/src/core/constants/constants.dart';
 import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
 import 'package:innoscripta_test_task/src/core/services/utils.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/time_tracking/time_tracking_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/time_tracking_history/time_tracking_history_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/entities/time_entry/time_entry_entity.dart';
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
@@ -94,6 +95,9 @@ class _HistoryTimeTrackWidget extends StatelessWidget {
       onPressed: () {
         context.router.toTimeEntryScreen(timeEntry).then((value) {
           context.read<TimeTrackingHistoryBloc>().fetch();
+          if (timeEntry.isActive) {
+            context.read<TimeTrackingBloc>().initial();
+          }
         });
       },
       child: Container(

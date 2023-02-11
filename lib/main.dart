@@ -7,9 +7,7 @@ import 'package:innoscripta_test_task/src/service_locator.dart' as di;
 
 // TODO: Calendar integration
 // TODO: Board info
-// TODO: CSV export
 // TODO: Analytics
-// TODO: Task finish breakpoint
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
