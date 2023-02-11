@@ -1,31 +1,30 @@
 part of 'time_tracking_bloc.dart';
 
 class TimeTrackingState {
-  final DateTime? startTime;
+  final TimeEntryEntity? timeEntry;
   final int currentDuration;
-  final bool isFinished;
   final bool isLoading;
   final String error;
 
   const TimeTrackingState({
-    this.startTime,
     this.currentDuration = 0,
-    this.isFinished = true,
+    this.timeEntry,
     this.isLoading = false,
     this.error = '',
   });
 
+  bool get isActive => timeEntry?.isActive ?? false;
+  bool get isNotActive => !isActive;
+
   TimeTrackingState copyWith({
-    DateTime? startTime,
     int? currentDuration,
-    bool? isFinished,
+    TimeEntryEntity? timeEntry,
     bool? isLoading,
     String? error,
   }) {
     return TimeTrackingState(
-      startTime: startTime ?? this.startTime,
       currentDuration: currentDuration ?? this.currentDuration,
-      isFinished: isFinished ?? this.isFinished,
+      timeEntry: timeEntry ?? this.timeEntry,
       isLoading: isLoading ?? this.isLoading,
       error: error ?? '',
     );
@@ -33,7 +32,7 @@ class TimeTrackingState {
 
   @override
   String toString() {
-    return 'TimeTrackingState(startTime: $startTime, currentDuration: $currentDuration, isFinished: $isFinished, isLoading: $isLoading, error: $error)';
+    return 'TimeTrackingState(currentDuration: $currentDuration, timeEntry: $timeEntry, isLoading: $isLoading, error: $error)';
   }
 }
 
@@ -41,13 +40,11 @@ class TimerTrackingStartedState extends TimeTrackingState {
   final int? taskId;
 
   TimerTrackingStartedState({
-    required super.startTime,
+    required super.timeEntry,
     this.taskId,
   });
 }
 
 class TimerTrackingFinishedState extends TimeTrackingState {
-  final TimeEntryEntity timeEntryEntity;
-
-  TimerTrackingFinishedState(this.timeEntryEntity);
+  TimerTrackingFinishedState({required super.timeEntry});
 }

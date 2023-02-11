@@ -25,6 +25,8 @@ dependencies:
   intl: 
   get_it: 
   path_provider: 
+  csv: ^5.0.1
+  share_extend: 
 
   # Local storage
   flutter_secure_storage: 
@@ -36,7 +38,6 @@ dependencies:
   flutter_svg: ^1.1.4
   flutter_screenutil: 
   fluttertoast: ^8.1.2
-  boardview: 
   animated_list_plus: ^0.4.5
 
 dev_dependencies:

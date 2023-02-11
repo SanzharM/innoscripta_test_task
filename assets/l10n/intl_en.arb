@@ -49,5 +49,12 @@
     "finishTime": "Finish time",
     "options": "Options",
     "sureDelete": "Are you sure you want to delete?",
-    "connectToAnotherTask": "Connect to another task"
+    "connectToAnotherTask": "Connect to another task",
+    "currentTimeTracking": "Current time tracking",
+    "pressButtonToStartTracking": "Нажмите на кнопку \"Старт\", чтобы начать отмечать время",
+    "report": "Report",
+    "reports": "Reports",
+    "generateCsv": "Generate report as CSV file",
+    "exportHistoryTimeTracks": "Export history time tracks",
+    "exportBoard": "Export board"
 }

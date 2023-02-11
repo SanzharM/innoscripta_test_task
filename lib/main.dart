@@ -5,10 +5,15 @@ import 'package:innoscripta_test_task/src/core/constants/constants.dart';
 import 'package:innoscripta_test_task/src/core/storage/hive_storage.dart';
 import 'package:innoscripta_test_task/src/service_locator.dart' as di;
 
+// TODO: Calendar integration
+// TODO: Board info
+// TODO: CSV export
+// TODO: Analytics
+// TODO: Task finish breakpoint
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.initialize();
-  // await di.sl<HiveStorage>().clear();
   await di.sl<HiveStorage>().initialize();
 
   await SystemChrome.setPreferredOrientations([

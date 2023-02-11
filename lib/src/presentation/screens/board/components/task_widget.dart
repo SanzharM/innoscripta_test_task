@@ -11,7 +11,7 @@ import 'package:innoscripta_test_task/src/domain/entities/status/status_entity.d
 import 'package:innoscripta_test_task/src/domain/entities/task/task_entity.dart';
 import 'package:innoscripta_test_task/src/domain/entities/time_entry/time_entry_entity.dart';
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
-import 'package:innoscripta_test_task/src/presentation/screens/task/components/time_tracking_widget.dart';
+import 'package:innoscripta_test_task/src/presentation/widgets/seconds_builder.dart';
 
 class TaskWidget extends StatelessWidget {
   const TaskWidget({
@@ -35,7 +35,8 @@ class TaskWidget extends StatelessWidget {
         }
         return CupertinoButton(
           padding: EdgeInsets.zero,
-          child: Container(
+          child: AnimatedContainer(
+            duration: Utils.animationDuration,
             width: double.maxFinite,
             padding: EdgeInsets.all(AppConstraints.padding),
             decoration: BoxDecoration(

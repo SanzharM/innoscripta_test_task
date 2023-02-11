@@ -559,6 +559,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Current time tracking`
+  String get currentTimeTracking {
+    return Intl.message(
+      'Current time tracking',
+      name: 'currentTimeTracking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Нажмите на кнопку "Старт", чтобы начать отмечать время`
+  String get pressButtonToStartTracking {
+    return Intl.message(
+      'Нажмите на кнопку "Старт", чтобы начать отмечать время',
+      name: 'pressButtonToStartTracking',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report`
+  String get report {
+    return Intl.message(
+      'Report',
+      name: 'report',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reports`
+  String get reports {
+    return Intl.message(
+      'Reports',
+      name: 'reports',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generate report as CSV file`
+  String get generateCsv {
+    return Intl.message(
+      'Generate report as CSV file',
+      name: 'generateCsv',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Export history time tracks`
+  String get exportHistoryTimeTracks {
+    return Intl.message(
+      'Export history time tracks',
+      name: 'exportHistoryTimeTracks',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Export board`
+  String get exportBoard {
+    return Intl.message(
+      'Export board',
+      name: 'exportBoard',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

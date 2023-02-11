@@ -26,6 +26,7 @@ class TimeTrackingHistoryBloc extends Bloc<TimeTrackingHistoryEvent, TimeTrackin
     if (state.isLoading) return;
 
     emit(state.copyWith(isLoading: true));
+    await Future.delayed(const Duration(milliseconds: 500));
     try {
       final response = await _repository.getEntries();
       emit(state.copyWith(isLoading: false, timeEntries: response));

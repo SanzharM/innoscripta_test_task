@@ -102,7 +102,7 @@ class _TaskScreenState extends State<TaskScreen> {
                               final picker = DatePickerWidget(
                                 context: context,
                                 initialDate: task.deadline,
-                                minDate: DateTime.now(),
+                                minDate: task.createdAt,
                               );
                               picker.show().then((date) {
                                 context.read<TaskBloc>().update(task.copyWith(deadline: date));
@@ -120,11 +120,11 @@ class _TaskScreenState extends State<TaskScreen> {
                             onPressed: () async {
                               final picker = DatePickerWidget(
                                 context: context,
-                                initialDate: task.deadline,
-                                minDate: DateTime.now(),
+                                initialDate: task.finishTime,
+                                minDate: task.createdAt,
                               );
                               picker.show().then((date) {
-                                context.read<TaskBloc>().update(task.copyWith(deadline: date));
+                                context.read<TaskBloc>().update(task.copyWith(finishTime: date));
                               });
                             },
                           ),

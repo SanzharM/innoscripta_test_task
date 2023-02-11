@@ -37,12 +37,19 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Connect to another task"),
         "create": MessageLookupByLibrary.simpleMessage("Create"),
         "createdAt": MessageLookupByLibrary.simpleMessage("Create date"),
+        "currentTimeTracking":
+            MessageLookupByLibrary.simpleMessage("Current time tracking"),
         "deadline": MessageLookupByLibrary.simpleMessage("Deadline"),
         "delete": MessageLookupByLibrary.simpleMessage("Delete"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
         "edit": MessageLookupByLibrary.simpleMessage("Edit"),
         "endTime": MessageLookupByLibrary.simpleMessage("End time"),
+        "exportBoard": MessageLookupByLibrary.simpleMessage("Export board"),
+        "exportHistoryTimeTracks":
+            MessageLookupByLibrary.simpleMessage("Export history time tracks"),
         "finishTime": MessageLookupByLibrary.simpleMessage("Finish time"),
+        "generateCsv":
+            MessageLookupByLibrary.simpleMessage("Generate report as CSV file"),
         "history": MessageLookupByLibrary.simpleMessage("History"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "howDoYouCallYourBoard":
@@ -57,7 +64,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "newTask": MessageLookupByLibrary.simpleMessage("New task"),
         "no": MessageLookupByLibrary.simpleMessage("No"),
         "options": MessageLookupByLibrary.simpleMessage("Options"),
+        "pressButtonToStartTracking": MessageLookupByLibrary.simpleMessage(
+            "Нажмите на кнопку \"Старт\", чтобы начать отмечать время"),
         "remove": MessageLookupByLibrary.simpleMessage("Remove"),
+        "report": MessageLookupByLibrary.simpleMessage("Report"),
+        "reports": MessageLookupByLibrary.simpleMessage("Reports"),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "startTime": MessageLookupByLibrary.simpleMessage("Start time"),
         "sureDelete": MessageLookupByLibrary.simpleMessage(

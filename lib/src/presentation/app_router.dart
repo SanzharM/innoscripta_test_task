@@ -15,6 +15,7 @@ import 'package:innoscripta_test_task/src/presentation/screens/settings/settings
 import 'package:innoscripta_test_task/src/presentation/screens/settings/themes_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/task/components/task_description_screen.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/task/task_screen.dart';
+import 'package:innoscripta_test_task/src/presentation/screens/time_tracking/components/history_time_track_builder.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/time_tracking/components/time_entry_screen.dart';
 import 'package:innoscripta_test_task/src/service_locator.dart';
 
@@ -76,6 +77,7 @@ class AppRouter {
     },
     _Routes.languages: (_) => const LanguagesScreen(),
     _Routes.themes: (_) => const ThemesScreen(),
+    _Routes.historyTimeTracks: (_) => const HistoryTimeTracksBuilder(),
   };
 
   static Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -93,6 +95,7 @@ class AppRouter {
   void toLanguagesScreen() => _navigator.pushNamed(_Routes.languages);
   void toThemesScreen() => _navigator.pushNamed(_Routes.themes);
   Future<void> toTimeEntryScreen(TimeEntryEntity timeEntry) => _navigator.pushNamed(_Routes.timeEntries, arguments: timeEntry);
+  Future<void> toHistoryTimeTracks() => _navigator.pushNamed(_Routes.historyTimeTracks);
 }
 
 class _Routes {
@@ -106,4 +109,5 @@ class _Routes {
   static const languages = '/languages';
   static const themes = '/themes';
   static const timeEntries = '/timeEntries';
+  static const historyTimeTracks = '/historyTimeTracks';
 }

@@ -8,8 +8,8 @@ class TimeEntryRepositoryImpl implements TimeEntryRepository {
   TimeEntryRepositoryImpl(this.dataSource);
 
   @override
-  Future<TimeEntryEntity> start(DateTime date, {int? taskId}) {
-    return dataSource.start(date, taskId: taskId);
+  Future<TimeEntryEntity> start(DateTime date, {int? taskId, bool isGlobal = false}) {
+    return dataSource.start(date, taskId: taskId, isGlobal: isGlobal);
   }
 
   @override

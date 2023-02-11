@@ -40,8 +40,8 @@
     "yes": "Да",
     "no": "Нет",
     "more": "Еще",
-    "timeEntry": "Точка времени",
-    "timeEntries": "Точки времени",
+    "timeEntry": "Отметка времени",
+    "timeEntries": "Отметки времени",
     "timeEntryUpdated": "Точка времени обновлена",
     "timeEntryDeleted": "Точка времени удалена",
     "startTime": "Время начала",
@@ -49,5 +49,12 @@
     "finishTime": "Время завершения",
     "options": "Опции",
     "sureDelete": "Вы уверены что хотите удалить?",
-    "connectToAnotherTask": "Привязать к другой задаче"
+    "connectToAnotherTask": "Привязать к другой задаче",
+    "currentTimeTracking": "Текущая отметка времени",
+    "pressButtonToStartTracking": "Press \"Play\" button to start tracking",
+    "report": "Отчет",
+    "reports": "Отчеты",
+    "generateCsv": "Сгенерировать отчет в CSV файле",
+    "exportHistoryTimeTracks": "Экспортировать историю",
+    "exportBoard": "Экспортировать доску"
 }

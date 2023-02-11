@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +10,7 @@ import 'package:innoscripta_test_task/src/domain/entities/time_entry/time_entry_
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_icon_button.dart';
+import 'package:innoscripta_test_task/src/presentation/widgets/seconds_builder.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/sheet_app_bar.dart';
 
 class TimeTrackingWidget extends StatefulWidget {
@@ -209,64 +208,6 @@ class _TimeTrackingWidgetState extends State<TimeTrackingWidget> {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class SecondsBuilder extends StatefulWidget {
-  const SecondsBuilder({
-    Key? key,
-    required this.timeEntry,
-    this.textStyle,
-  }) : super(key: key);
-
-  final TimeEntryEntity timeEntry;
-  final TextStyle? textStyle;
-
-  @override
-  State<SecondsBuilder> createState() => _SecondsBuilderState();
-}
-
-class _SecondsBuilderState extends State<SecondsBuilder> {
-  final Stream<int> _secondsStream = Stream<int>.periodic(
-    const Duration(seconds: 1),
-    (int count) => count,
-  );
-
-  late StreamSubscription _subcription;
-
-  late int _seconds;
-
-  @override
-  void initState() {
-    super.initState();
-    final now = DateTime.now();
-    int initialDifference = now.difference(widget.timeEntry.startTime).inSeconds;
-    _seconds = initialDifference;
-
-    _subcription = _secondsStream.listen((event) {
-      setState(() => _seconds = initialDifference + event);
-    });
-  }
-
-  @override
-  void dispose() {
-    _subcription.cancel();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.maxFinite,
-      child: Text(
-        Utils.toTimerFormat(_seconds),
-        textAlign: TextAlign.end,
-        style: widget.textStyle ??
-            Theme.of(context).textTheme.headlineLarge?.copyWith(
-                  fontSize: 26,
-                ),
       ),
     );
   }

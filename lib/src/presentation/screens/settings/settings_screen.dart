@@ -8,6 +8,7 @@ import 'package:innoscripta_test_task/src/core/storage/hive_storage.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/time_tracking_history/time_tracking_history_bloc.dart';
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
+import 'package:innoscripta_test_task/src/presentation/widgets/custom_app_bar.dart';
 import 'package:innoscripta_test_task/src/service_locator.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -24,11 +25,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: NestedScrollView(
         headerSliverBuilder: (context, innerBoxIsScrolled) {
           return <Widget>[
-            SliverAppBar(
-              pinned: true,
-              title: Text(
-                L10n.of(context).settings,
-              ),
+            CustomSliverAppBar(
+              title: L10n.of(context).settings,
             ),
           ];
         },

@@ -3,7 +3,7 @@ import 'package:innoscripta_test_task/src/core/storage/hive_storage.dart';
 import 'package:innoscripta_test_task/src/domain/entities/time_entry/time_entry_entity.dart';
 
 abstract class TimeEntryDataSource {
-  Future<TimeEntryEntity> start(DateTime date, {int? taskId});
+  Future<TimeEntryEntity> start(DateTime date, {int? taskId, bool isGlobal = false});
 
   Future<TimeEntryEntity> end(TimeEntryEntity timeEntryEntity);
 
@@ -18,7 +18,7 @@ class TimeEntryDataSourceImpl implements TimeEntryDataSource {
   Box<TimeEntryEntity> get box => Hive.box<TimeEntryEntity>(HiveStorage.timeEntryBox);
 
   @override
-  Future<TimeEntryEntity> start(DateTime date, {int? taskId}) async {
+  Future<TimeEntryEntity> start(DateTime date, {int? taskId, bool isGlobal = false}) async {
     if (box.values.any((e) => e.endTime == null)) {
       throw Exception('You have already opened time entry.');
     }
@@ -28,6 +28,7 @@ class TimeEntryDataSourceImpl implements TimeEntryDataSource {
       endTime: null,
       description: null,
       taskId: taskId,
+      isGlobal: isGlobal,
     );
     await box.add(timeEntry);
     return timeEntry;
@@ -60,10 +61,12 @@ class TimeEntryDataSourceImpl implements TimeEntryDataSource {
 
   @override
   Future<List<TimeEntryEntity>> getEntries({int? taskId}) async {
+    var entries = List<TimeEntryEntity>.from(box.values.toList().reversed);
     if (taskId == null) {
-      return box.values.toList();
+      return entries;
     }
-    var entries = List<TimeEntryEntity>.from(box.values).where((e) => e.taskId == taskId).toList();
+
+    entries = entries.where((e) => e.taskId == taskId).toList();
     entries.sort((a, b) => a.startTime.compareTo(b.startTime));
     return entries;
   }

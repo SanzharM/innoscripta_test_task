@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:innoscripta_test_task/src/core/services/utils.dart';
 import 'package:innoscripta_test_task/src/domain/entities/status/status_entity.dart';
 import 'package:innoscripta_test_task/src/domain/entities/task/task_entity.dart';
 
@@ -66,5 +67,14 @@ class BoardEntity {
   @override
   String toString() {
     return 'BoardEntity(id: $id, name: $name, statuses: $statuses, tasks: $tasks, createdAt: $createdAt, updatedAt: $updatedAt)';
+  }
+
+  static List<String> csvColumnNames = ['Name', 'Statuses', 'Create time'];
+  List<dynamic> toCsv() {
+    return [
+      name,
+      statuses.map<dynamic>((e) => e.name).toList(),
+      Utils.formatDate(createdAt),
+    ];
   }
 }

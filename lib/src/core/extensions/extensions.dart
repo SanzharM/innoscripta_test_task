@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:innoscripta_test_task/src/core/exceptions/exceptions.dart';
 import 'package:innoscripta_test_task/src/domain/entities/status/status_entity.dart';
 import 'package:innoscripta_test_task/src/domain/entities/task/task_entity.dart';
+import 'package:innoscripta_test_task/src/domain/entities/time_entry/time_entry_entity.dart';
 
 extension XPaginationList<T> on List<T> {
   List<T> pagination(int page, {int perPage = 10}) {
@@ -78,5 +79,18 @@ extension XLanguageName on Locale {
       default:
         return languageCode;
     }
+  }
+}
+
+extension XTimeEntries on List<TimeEntryEntity> {
+  Duration get totalSpentTime {
+    int totalSeconds = 0;
+    for (var timeEntry in this) {
+      if (timeEntry.isActive) continue;
+
+      final duration = timeEntry.endTime!.difference(timeEntry.startTime).inSeconds;
+      totalSeconds += duration;
+    }
+    return Duration(seconds: totalSeconds);
   }
 }

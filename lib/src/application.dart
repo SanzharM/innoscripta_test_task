@@ -6,6 +6,7 @@ import 'package:innoscripta_test_task/src/core/l10n/generated/l10n.dart';
 import 'package:innoscripta_test_task/src/core/services/utils.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/nav_bar/nav_bar_bloc.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/report/report_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/settings/settings_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/time_tracking/time_tracking_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/time_tracking_history/time_tracking_history_bloc.dart';
@@ -39,7 +40,7 @@ class _ApplicationState extends State<Application> {
           create: (_) => BoardListBloc()..fetch(),
         ),
         BlocProvider<TimeTrackingBloc>(
-          create: (_) => TimeTrackingBloc(Ticker()),
+          create: (_) => TimeTrackingBloc(Ticker())..initial(),
         ),
         BlocProvider<TimeTrackingHistoryBloc>(
           create: (_) => TimeTrackingHistoryBloc()..fetch(),
@@ -47,6 +48,9 @@ class _ApplicationState extends State<Application> {
         BlocProvider<SettingsBloc>(
           lazy: false,
           create: (_) => SettingsBloc()..initial(),
+        ),
+        BlocProvider<ReportBloc>(
+          create: (_) => ReportBloc(),
         ),
       ],
       child: ScreenUtilInit(

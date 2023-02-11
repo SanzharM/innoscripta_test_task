@@ -7,6 +7,7 @@ import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_blo
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/home/components/board_list_builder.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_button.dart';
+import 'package:innoscripta_test_task/src/presentation/widgets/custom_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -53,11 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
           controller: _scrollController,
           headerSliverBuilder: (context, innerBoxIsScrolled) {
             return [
-              SliverAppBar(
-                pinned: true,
-                title: Text(
-                  L10n.of(context).home,
-                ),
+              CustomSliverAppBar(
+                title: L10n.of(context).home,
               ),
             ];
           },

@@ -13,12 +13,15 @@ class TimeEntryEntity {
   final String? description;
   @HiveField(3)
   final int? taskId;
+  @HiveField(4)
+  final bool isGlobal;
 
   const TimeEntryEntity({
     required this.startTime,
     this.endTime,
     this.description,
     this.taskId,
+    this.isGlobal = false,
   });
 
   String get readableFormat => '${Utils.formatDate(startTime, format: 'HH:mm:ss')}'
@@ -41,21 +44,23 @@ class TimeEntryEntity {
     return false;
   }
 
+  TimeEntryEntity finish() => copyWith(endTime: DateTime.now());
+
   TimeEntryEntity copyWith({
     DateTime? startTime,
     DateTime? endTime,
     String? description,
     int? taskId,
+    bool? isGlobal,
   }) {
     return TimeEntryEntity(
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
       description: description ?? this.description,
       taskId: taskId ?? this.taskId,
+      isGlobal: isGlobal ?? this.isGlobal,
     );
   }
-
-  TimeEntryEntity finish() => copyWith(endTime: DateTime.now());
 
   @override
   bool operator ==(Object other) {
@@ -65,16 +70,28 @@ class TimeEntryEntity {
         other.startTime == startTime &&
         // other.endTime == endTime &&
         // other.description == description &&
-        other.taskId == taskId;
+        other.taskId == taskId &&
+        other.isGlobal == isGlobal;
   }
 
   @override
   int get hashCode {
-    return startTime.hashCode ^ endTime.hashCode ^ description.hashCode ^ taskId.hashCode;
+    return startTime.hashCode ^ endTime.hashCode ^ description.hashCode ^ taskId.hashCode ^ isGlobal.hashCode;
   }
 
   @override
   String toString() {
-    return 'TimeEntryEntity(startTime: $startTime, endTime: $endTime, description: $description, taskId: $taskId)';
+    return 'TimeEntryEntity(startTime: $startTime, endTime: $endTime, description: $description, taskId: $taskId, isGlobal: $isGlobal)';
+  }
+
+  static List<String> csvColumnNames = <String>['Total', 'Start time', 'End time', 'Description'];
+
+  List<dynamic> toCsv() {
+    const format = 'dd.MM.yyyy HH:mm:ss';
+    return [
+      Utils.formatDate(startTime, format: format),
+      Utils.formatDate(endTime, format: format),
+      description ?? '',
+    ];
   }
 }

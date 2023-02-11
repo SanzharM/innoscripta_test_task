@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+import 'package:innoscripta_test_task/src/core/extensions/extensions.dart';
 import 'package:innoscripta_test_task/src/domain/entities/status/status_entity.dart';
 import 'package:innoscripta_test_task/src/domain/entities/time_entry/time_entry_entity.dart';
 
@@ -92,6 +93,29 @@ class TaskEntity {
       boardId: boardId,
       finishTime: null,
     );
+  }
+
+  static List<String> csvColumnNames = const <String>[
+    'Name',
+    'Description',
+    'Create time',
+    'Deadline',
+    'Finish time',
+    'Status',
+    'Spent time',
+    'Time entries',
+  ];
+  List<dynamic> toCsv() {
+    return [
+      name,
+      description,
+      createdAt,
+      deadline,
+      finishTime,
+      statusEntity.name,
+      timeEntries.totalSpentTime.toHoursMinutesSeconds(),
+      timeEntries.map((e) => e.readableFormat).toList(),
+    ];
   }
 
   @override

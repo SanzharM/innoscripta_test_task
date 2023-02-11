@@ -37,12 +37,20 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Привязать к другой задаче"),
         "create": MessageLookupByLibrary.simpleMessage("Создать"),
         "createdAt": MessageLookupByLibrary.simpleMessage("Дата создания"),
+        "currentTimeTracking":
+            MessageLookupByLibrary.simpleMessage("Текущая отметка времени"),
         "deadline": MessageLookupByLibrary.simpleMessage("Крайний срок"),
         "delete": MessageLookupByLibrary.simpleMessage("Удалить"),
         "description": MessageLookupByLibrary.simpleMessage("Описание"),
         "edit": MessageLookupByLibrary.simpleMessage("Изменить"),
         "endTime": MessageLookupByLibrary.simpleMessage("Время завершения"),
+        "exportBoard":
+            MessageLookupByLibrary.simpleMessage("Экспортировать доску"),
+        "exportHistoryTimeTracks":
+            MessageLookupByLibrary.simpleMessage("Экспортировать историю"),
         "finishTime": MessageLookupByLibrary.simpleMessage("Время завершения"),
+        "generateCsv": MessageLookupByLibrary.simpleMessage(
+            "Сгенерировать отчет в CSV файле"),
         "history": MessageLookupByLibrary.simpleMessage("История"),
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
         "howDoYouCallYourBoard":
@@ -57,7 +65,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "newTask": MessageLookupByLibrary.simpleMessage("Новая задача"),
         "no": MessageLookupByLibrary.simpleMessage("Нет"),
         "options": MessageLookupByLibrary.simpleMessage("Опции"),
+        "pressButtonToStartTracking": MessageLookupByLibrary.simpleMessage(
+            "Press \"Play\" button to start tracking"),
         "remove": MessageLookupByLibrary.simpleMessage("Удалить"),
+        "report": MessageLookupByLibrary.simpleMessage("Отчет"),
+        "reports": MessageLookupByLibrary.simpleMessage("Отчеты"),
         "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
         "startTime": MessageLookupByLibrary.simpleMessage("Время начала"),
         "sureDelete": MessageLookupByLibrary.simpleMessage(
@@ -69,8 +81,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "taskUpdated": MessageLookupByLibrary.simpleMessage("Задача изменена"),
         "tasks": MessageLookupByLibrary.simpleMessage("Задачи"),
         "themes": MessageLookupByLibrary.simpleMessage("Темы"),
-        "timeEntries": MessageLookupByLibrary.simpleMessage("Точки времени"),
-        "timeEntry": MessageLookupByLibrary.simpleMessage("Точка времени"),
+        "timeEntries": MessageLookupByLibrary.simpleMessage("Отметки времени"),
+        "timeEntry": MessageLookupByLibrary.simpleMessage("Отметка времени"),
         "timeEntryDeleted":
             MessageLookupByLibrary.simpleMessage("Точка времени удалена"),
         "timeEntryUpdated":
