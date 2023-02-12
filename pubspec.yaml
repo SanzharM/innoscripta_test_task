@@ -28,6 +28,11 @@ dependencies:
   csv: ^5.0.1
   share_extend: 
 
+  # Local Notifications
+  flutter_local_notifications: 
+  timezone: 
+  add_2_calendar: ^2.2.3
+
   # Local storage
   flutter_secure_storage: 
   hive_flutter: 

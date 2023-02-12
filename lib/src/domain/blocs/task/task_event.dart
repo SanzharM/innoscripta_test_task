@@ -30,3 +30,11 @@ class TaskDoneEvent extends TaskEvent {
 
   TaskDoneEvent(this.task);
 }
+
+class TaskSetDeadlineEvent extends TaskEvent {
+  final DateTime date;
+
+  TaskSetDeadlineEvent(this.date);
+}
+
+class TaskRemoveDeadlineEvent extends TaskEvent {}

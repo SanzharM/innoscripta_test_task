@@ -44,10 +44,10 @@ class TaskEntity {
   bool get isFinished => finishTime != null;
   bool get isNotFinished => !isFinished;
 
-  bool get isDeadlinePassed {
+  bool get isDeadlineOverdue {
     if (deadline == null) return false;
     final now = DateTime.now();
-    return deadline!.isBefore(now) && isNotFinished;
+    return now.isAfter(deadline!) && (finishTime?.isAfter(deadline!) ?? true);
   }
 
   bool get hasActiveTimeEntry {

@@ -1,5 +1,6 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
+import 'package:innoscripta_test_task/src/core/services/local_notification_service.dart';
 import 'package:innoscripta_test_task/src/core/storage/hive_storage.dart';
 import 'package:innoscripta_test_task/src/core/storage/local_storage.dart';
 import 'package:innoscripta_test_task/src/data/datasources/board/board_data_source.dart';
@@ -23,6 +24,7 @@ Future<void> initialize() async {
     ..registerLazySingleton(() => LocalStorage())
     ..registerLazySingleton(() => HiveStorage())
     ..registerLazySingleton(() => const AppRouter())
+    ..registerLazySingleton(() => LocalNotificationService())
 
     // Data sources
     ..registerLazySingleton<BoardDataSource>(

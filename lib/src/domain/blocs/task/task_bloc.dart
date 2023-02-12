@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:innoscripta_test_task/src/core/services/local_notification_service.dart';
 import 'package:innoscripta_test_task/src/domain/entities/board/board_entity.dart';
 import 'package:innoscripta_test_task/src/domain/entities/task/task_entity.dart';
 import 'package:innoscripta_test_task/src/domain/entities/time_entry/time_entry_entity.dart';
@@ -18,6 +19,8 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   void startTimeEntry() => add(TaskStartTimeEntryEvent());
   void finishTimeEntry() => add(TaskFinishTimeEntryEvent());
   void setAsDone(TaskEntity task) => add(TaskDoneEvent(task));
+  void setDeadline(DateTime date) => add(TaskSetDeadlineEvent(date));
+  void removeDeadline() => add(TaskRemoveDeadlineEvent());
 
   TaskBloc(TaskEntity task) : super(TaskState(task: task)) {
     on<TaskGetEvent>(_get);
@@ -26,11 +29,14 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     on<TaskStartTimeEntryEvent>(_startTimeEntry);
     on<TaskFinishTimeEntryEvent>(_finishTimeEntry);
     on<TaskDoneEvent>(_setAsDone);
+    on<TaskSetDeadlineEvent>(_setDeadline);
+    on<TaskRemoveDeadlineEvent>(_removeDeadline);
   }
 
   final _repository = sl<TaskRepository>();
   final _boardRepository = sl<BoardRepository>();
   final _timeEntryRepository = sl<TimeEntryRepository>();
+  final notificationService = sl<LocalNotificationService>();
 
   void _get(TaskGetEvent event, Emitter<TaskState> emit) async {
     if (state.isLoading) return;
@@ -160,6 +166,33 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
     } catch (e) {
       debugPrint('TaskDoneEvent error: $e');
       emit(state.copyWith(isLoading: false, error: e.toString()));
+    }
+  }
+
+  void _setDeadline(TaskSetDeadlineEvent event, Emitter<TaskState> emit) async {
+    try {
+      final int id = state.task.id;
+      await notificationService.showScheduledNotification(
+        id: id,
+        title: state.task.name,
+        body: 'Deadline time',
+        scheduledTime: event.date,
+      );
+      await notificationService.showNotification(
+        id: id,
+        title: state.task.name,
+        body: 'New deadline was set: ${event.date}',
+      );
+    } catch (e) {
+      debugPrint('TaskSetDeadlineEvent error: $e');
+    }
+  }
+
+  void _removeDeadline(TaskRemoveDeadlineEvent event, Emitter<TaskState> emit) async {
+    try {
+      return await notificationService.removeScheduledNotification(state.task.id);
+    } catch (e) {
+      debugPrint('TaskRemoveDeadlineEvent error: $e');
     }
   }
 }

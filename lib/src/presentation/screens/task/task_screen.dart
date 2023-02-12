@@ -93,26 +93,39 @@ class _TaskScreenState extends State<TaskScreen> {
                           SizedBox(height: AppConstraints.padding),
                           _Element(
                             title: L10n.of(context).deadline,
-                            value: Utils.formatDate(task.deadline) ?? '-',
+                            value: Utils.formatDate(
+                                  task.deadline,
+                                  format: 'dd.MM.yyyy HH:mm',
+                                ) ??
+                                '-',
                             leading: Icon(
                               CupertinoIcons.clock_solid,
-                              color: task.isDeadlinePassed ? theme.colorScheme.onError : null,
+                              color: task.isDeadlineOverdue ? theme.colorScheme.onError : null,
                             ),
                             onPressed: () async {
                               final picker = DatePickerWidget(
                                 context: context,
-                                initialDate: task.deadline,
+                                initialDate: task.createdAt,
                                 minDate: task.createdAt,
+                                maxDate: task.createdAt.add(const Duration(days: 365)),
+                                pickerMode: PickerMode.datetime,
                               );
                               picker.show().then((date) {
                                 context.read<TaskBloc>().update(task.copyWith(deadline: date));
+                                if (date != null) {
+                                  context.read<TaskBloc>().setDeadline(date);
+                                }
                               });
                             },
                           ),
                           SizedBox(height: AppConstraints.padding),
                           _Element(
                             title: L10n.of(context).finishTime,
-                            value: Utils.formatDate(task.finishTime) ?? '-',
+                            value: Utils.formatDate(
+                                  task.finishTime,
+                                  format: 'dd.MM.yyyy HH:mm',
+                                ) ??
+                                '-',
                             leading: Icon(
                               task.isFinished ? CupertinoIcons.checkmark_alt_circle_fill : CupertinoIcons.time_solid,
                               color: task.isFinished ? theme.highlightColor : theme.hintColor,
@@ -120,11 +133,16 @@ class _TaskScreenState extends State<TaskScreen> {
                             onPressed: () async {
                               final picker = DatePickerWidget(
                                 context: context,
-                                initialDate: task.finishTime,
+                                initialDate: task.createdAt,
                                 minDate: task.createdAt,
+                                maxDate: task.createdAt.add(const Duration(days: 365)),
+                                pickerMode: PickerMode.datetime,
                               );
                               picker.show().then((date) {
                                 context.read<TaskBloc>().update(task.copyWith(finishTime: date));
+                                if (task.deadline != null) {
+                                  context.read<TaskBloc>().removeDeadline();
+                                }
                               });
                             },
                           ),

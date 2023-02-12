@@ -51,7 +51,7 @@
     "sureDelete": "Вы уверены что хотите удалить?",
     "connectToAnotherTask": "Привязать к другой задаче",
     "currentTimeTracking": "Текущая отметка времени",
-    "pressButtonToStartTracking": "Press \"Play\" button to start tracking",
+    "pressButtonToStartTracking": "Нажмите на кнопку \"Старт\", чтобы начать отмечать время",
     "report": "Отчет",
     "reports": "Отчеты",
     "generateCsv": "Сгенерировать отчет в CSV файле",

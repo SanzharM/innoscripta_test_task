@@ -66,7 +66,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "no": MessageLookupByLibrary.simpleMessage("Нет"),
         "options": MessageLookupByLibrary.simpleMessage("Опции"),
         "pressButtonToStartTracking": MessageLookupByLibrary.simpleMessage(
-            "Press \"Play\" button to start tracking"),
+            "Нажмите на кнопку \"Старт\", чтобы начать отмечать время"),
         "remove": MessageLookupByLibrary.simpleMessage("Удалить"),
         "report": MessageLookupByLibrary.simpleMessage("Отчет"),
         "reports": MessageLookupByLibrary.simpleMessage("Отчеты"),
