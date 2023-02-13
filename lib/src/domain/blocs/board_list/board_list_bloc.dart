@@ -55,7 +55,7 @@ class BoardListBloc extends Bloc<BoardListEvent, BoardListState> {
         isLoading: false,
         boards: response.items,
         total: response.total,
-        page: state.page + 1,
+        page: 2,
       ));
     } catch (e) {
       debugPrint('BoardListRefreshEvent error: $e');

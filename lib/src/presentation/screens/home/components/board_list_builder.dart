@@ -3,42 +3,52 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:innoscripta_test_task/src/core/constants/app_constraints.dart';
+import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
 import 'package:innoscripta_test_task/src/core/services/utils.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/entities/board/board_entity.dart';
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
 
-class BoardListBuilder extends StatefulWidget {
+class BoardListBuilder extends StatelessWidget {
   const BoardListBuilder({super.key});
 
-  @override
-  State<BoardListBuilder> createState() => _BoardListBuilderState();
-}
+  static const int _maxLength = 5;
 
-class _BoardListBuilderState extends State<BoardListBuilder> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<BoardListBloc, BoardListState>(
       builder: (context, state) {
+        int itemCount = state.boards.length > _maxLength ? _maxLength : state.boards.length;
+
         final boards = state.boards;
-        return ListView.separated(
-          physics: const NeverScrollableScrollPhysics(),
-          shrinkWrap: true,
-          padding: EdgeInsets.all(AppConstraints.padding),
-          primary: false,
-          itemCount: boards.length + 1,
-          separatorBuilder: (_, __) => SizedBox(height: AppConstraints.padding),
-          itemBuilder: (context, index) {
-            bool isLast = index + 1 == boards.length + 1;
-            if (isLast) {
-              return AnimatedSwitcher(
-                duration: const Duration(milliseconds: 200),
-                child: state.isLoading ? const CupertinoActivityIndicator() : const SizedBox(),
-              );
-            }
-            final board = boards.elementAt(index);
-            return _BoardCell(boardEntity: board);
+        return RefreshIndicator(
+          onRefresh: () async {
+            context.read<BoardListBloc>().refresh();
+            await Future.delayed(Utils.delayDuration);
           },
+          child: ListView.separated(
+            physics: const NeverScrollableScrollPhysics(
+              parent: BouncingScrollPhysics(),
+            ),
+            shrinkWrap: false,
+            padding: EdgeInsets.all(AppConstraints.padding),
+            itemCount: itemCount + 1,
+            separatorBuilder: (_, __) => SizedBox(height: AppConstraints.padding),
+            itemBuilder: (context, index) {
+              bool isLast = index + 1 == itemCount + 1;
+              if (isLast) {
+                return SizedBox(
+                  width: double.maxFinite,
+                  child: CupertinoButton(
+                    child: Text(L10n.of(context).more),
+                    onPressed: () {},
+                  ),
+                );
+              }
+              final board = boards.elementAt(index);
+              return _BoardCell(boardEntity: board);
+            },
+          ),
         );
       },
     );
