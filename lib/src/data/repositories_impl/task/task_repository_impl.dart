@@ -29,7 +29,7 @@ class TaskRepositoryImpl implements TaskRepository {
   }
 
   @override
-  Future<List<TaskEntity>> getTasksFromBoard(int boardId) {
-    return dataSource.getTasksFromBoard(boardId);
+  Future<List<TaskEntity>> getTasks({int? boardId}) {
+    return dataSource.getTasks(boardId: boardId);
   }
 }

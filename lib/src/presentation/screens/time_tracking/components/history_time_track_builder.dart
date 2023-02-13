@@ -9,6 +9,7 @@ import 'package:innoscripta_test_task/src/domain/blocs/time_tracking/time_tracki
 import 'package:innoscripta_test_task/src/domain/blocs/time_tracking_history/time_tracking_history_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/entities/time_entry/time_entry_entity.dart';
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
+import 'package:innoscripta_test_task/src/presentation/widgets/cell/app_cell.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/custom_app_bar.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/empty_list.dart';
 
@@ -49,7 +50,9 @@ class _HistoryTimeTracksBuilderState extends State<HistoryTimeTracksBuilder> {
                       duration: Utils.animationDuration,
                       child: state.isLoading
                           ? Center(
-                              child: CupertinoActivityIndicator(color: theme.primaryColor),
+                              child: CupertinoActivityIndicator(
+                                color: theme.primaryColor,
+                              ),
                             )
                           : historyTracks.isEmpty
                               ? const EmptyList()
@@ -89,23 +92,29 @@ class _HistoryTimeTrackWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return CupertinoButton(
       padding: EdgeInsets.zero,
-      onPressed: () {
-        context.router.toTimeEntryScreen(timeEntry).then((value) {
-          context.read<TimeTrackingHistoryBloc>().fetch();
-          if (timeEntry.isActive) {
-            context.read<TimeTrackingBloc>().initial();
-          }
-        });
-      },
-      child: Container(
-        padding: EdgeInsets.all(AppConstraints.padding),
-        child: Text(
-          timeEntry.readableFormat,
-          style: theme.textTheme.bodyLarge?.apply(color: theme.primaryColor),
-        ),
+      onPressed: () {},
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          AppCell(
+            padding: EdgeInsets.zero,
+            leading: timeEntry.isActive ? const Icon(CupertinoIcons.timelapse) : const Icon(CupertinoIcons.clock_solid),
+            title: timeEntry.readableFormat,
+            subtitle: Utils.toDayPrefix(context, timeEntry.endTime ?? timeEntry.startTime),
+            onPressed: timeEntry.isActive
+                ? null
+                : () {
+                    context.router.toTimeEntryScreen(timeEntry).then((value) {
+                      context.read<TimeTrackingHistoryBloc>().fetch();
+                      if (timeEntry.isActive) {
+                        context.read<TimeTrackingBloc>().initial();
+                      }
+                    });
+                  },
+          ),
+        ],
       ),
     );
   }

@@ -61,14 +61,14 @@ class TimeEntryDataSourceImpl implements TimeEntryDataSource {
 
   @override
   Future<List<TimeEntryEntity>> getEntries({int? taskId}) async {
-    var entries = List<TimeEntryEntity>.from(box.values.toList().reversed);
+    var entries = List<TimeEntryEntity>.from(box.values);
     if (taskId == null) {
       return entries;
     }
 
     entries = entries.where((e) => e.taskId == taskId).toList();
     entries.sort((a, b) => a.startTime.compareTo(b.startTime));
-    return entries;
+    return entries.reversed.toList();
   }
 
   @override

@@ -78,18 +78,22 @@ class _AddBoardScreenState extends State<AddBoardScreen> {
             }
           },
           builder: (context, state) {
-            return Padding(
-              padding: EdgeInsets.all(AppConstraints.padding),
-              child: AppButton(
-                title: L10n.of(context).add,
-                isLoading: state.isLoading,
-                onPressed: _controller.text.isEmpty
-                    ? null
-                    : () {
-                        context.read<BoardListBloc>().addBoard(_controller.text);
-                      },
-              ),
-            );
+            return ValueListenableBuilder<TextEditingValue>(
+                valueListenable: _controller,
+                builder: (context, value, _) {
+                  return Padding(
+                    padding: EdgeInsets.all(AppConstraints.padding),
+                    child: AppButton(
+                      title: L10n.of(context).add,
+                      isLoading: state.isLoading,
+                      onPressed: value.text.isEmpty
+                          ? null
+                          : () {
+                              context.read<BoardListBloc>().addBoard(_controller.text);
+                            },
+                    ),
+                  );
+                });
           },
         ),
       ),

@@ -8,14 +8,17 @@ import 'package:innoscripta_test_task/src/core/services/alert_controller.dart';
 import 'package:innoscripta_test_task/src/core/services/utils.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/time_entry/time_entry_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/time_tracking_history/time_tracking_history_bloc.dart';
+import 'package:innoscripta_test_task/src/domain/repositories/task/task_repository.dart';
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/app_text_field.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_button.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_icon_button.dart';
+import 'package:innoscripta_test_task/src/presentation/widgets/cell/app_cell.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/custom_app_bar.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/date_picker_widget.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/sheet_app_bar.dart';
+import 'package:innoscripta_test_task/src/service_locator.dart';
 
 class TimeEntryScreen extends StatefulWidget {
   const TimeEntryScreen({super.key});
@@ -51,6 +54,7 @@ class _TimeEntryScreenState extends State<TimeEntryScreen> {
         }
 
         if (state is TimeEntryUpdatedState) {
+          context.read<TimeEntryBloc>().get();
           return AlertController.showMessage(
             L10n.of(context).timeEntryUpdated,
             isSuccess: true,
@@ -74,7 +78,7 @@ class _TimeEntryScreenState extends State<TimeEntryScreen> {
             appBar: CustomAppBar(
               actions: [
                 AppIconButton(
-                  onPressed: showOptions,
+                  onPressed: () => showOptions(context),
                   child: const Icon(Icons.more_vert),
                 ),
               ],
@@ -151,11 +155,10 @@ class _TimeEntryScreenState extends State<TimeEntryScreen> {
     );
   }
 
-  void showOptions() async {
+  void showOptions(BuildContext context) async {
     return CustomBottomSheet.show<void>(
       context: context,
       isScrollControlled: true,
-      enableDrag: true,
       child: Padding(
         padding: EdgeInsets.all(AppConstraints.padding),
         child: Column(
@@ -167,6 +170,7 @@ class _TimeEntryScreenState extends State<TimeEntryScreen> {
               title: L10n.of(context).connectToAnotherTask,
               onPressed: () {
                 context.router.back();
+                _showTasks(context);
               },
             ),
             SizedBox(height: AppConstraints.padding),
@@ -187,6 +191,61 @@ class _TimeEntryScreenState extends State<TimeEntryScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  void _showTasks(BuildContext parentContext) async {
+    return CustomBottomSheet.show(
+      context: context,
+      isScrollControlled: true,
+      child: BlocBuilder<TimeEntryBloc, TimeEntryState>(
+        bloc: parentContext.read<TimeEntryBloc>(),
+        builder: (context, state) {
+          final timeEntry = state.timeEntry;
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(AppConstraints.padding),
+                child: SheetAppBar(title: L10n.of(context).tasks),
+              ),
+              Flexible(
+                child: FutureBuilder(
+                  future: sl<TaskRepository>().getTasks(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      final tasks = snapshot.data!;
+                      return ListView.builder(
+                        padding: EdgeInsets.all(AppConstraints.padding),
+                        physics: const BouncingScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: tasks.length,
+                        itemBuilder: (context, index) {
+                          final task = tasks.elementAt(index);
+                          return AppCell(
+                            padding: EdgeInsets.symmetric(vertical: AppConstraints.padding),
+                            leading: const Icon(CupertinoIcons.list_bullet),
+                            title: task.name,
+                            subtitle: Utils.formatDate(task.createdAt),
+                            isLoading: state.isLoading,
+                            onPressed: () {
+                              parentContext.read<TimeEntryBloc>().update(
+                                    timeEntry.copyWith(taskId: task.id),
+                                  );
+                              context.router.back();
+                            },
+                          );
+                        },
+                      );
+                    }
+                    return const SizedBox();
+                  },
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

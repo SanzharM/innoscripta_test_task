@@ -67,14 +67,19 @@ class _AddTaskWidgetState extends State<AddTaskWidget> {
                   label: L10n.of(context).task,
                 ),
                 const Spacer(),
-                AppButton(
-                  title: L10n.of(context).create,
-                  isLoading: state.isLoading,
-                  onPressed: _controller.text.isEmpty
-                      ? null
-                      : () {
-                          context.read<BoardBloc>().createTask(_controller.text);
-                        },
+                ValueListenableBuilder(
+                  valueListenable: _controller,
+                  builder: (context, TextEditingValue value, _) {
+                    return AppButton(
+                      title: L10n.of(context).create,
+                      isLoading: state.isLoading,
+                      onPressed: value.text.isEmpty
+                          ? null
+                          : () {
+                              context.read<BoardBloc>().createTask(_controller.text);
+                            },
+                    );
+                  },
                 ),
               ],
             ),

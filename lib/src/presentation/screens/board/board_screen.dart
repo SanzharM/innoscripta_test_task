@@ -17,10 +17,10 @@ import 'package:innoscripta_test_task/src/presentation/screens/board/components/
 import 'package:innoscripta_test_task/src/presentation/screens/board/components/board_info_widget.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/board/components/task_widget.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/bottom_sheet/custom_bottom_sheet.dart';
-import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_button.dart';
+// import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_button.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_icon_button.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/custom_app_bar.dart';
-import 'package:innoscripta_test_task/src/presentation/widgets/sheet_app_bar.dart';
+// import 'package:innoscripta_test_task/src/presentation/widgets/sheet_app_bar.dart';
 
 class BoardScreen extends StatefulWidget {
   const BoardScreen({super.key});
@@ -180,39 +180,39 @@ class __ColumnBuilderState extends State<_ColumnBuilder> {
                         style: Theme.of(context).textTheme.titleSmall,
                       ),
                     ),
-                    SizedBox(width: AppConstraints.padding),
-                    AppIconButton(
-                      child: const Icon(Icons.more_horiz_rounded),
-                      onPressed: () async {
-                        return CustomBottomSheet.show<void>(
-                          context: context,
-                          isScrollControlled: true,
-                          child: Padding(
-                            padding: EdgeInsets.all(AppConstraints.padding),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                SheetAppBar(
-                                  title: widget.status.name,
-                                ),
-                                const Divider(),
-                                SizedBox(height: 60.h),
-                                AppButton(
-                                  title: L10n.of(context).delete,
-                                  textColor: AppColors.red,
-                                  backgroundColor: AppColors.white,
-                                  onPressed: () {},
-                                ),
-                                SizedBox(height: 20.h),
-                              ],
-                            ),
-                          ),
-                        );
-                      },
-                    ),
+                    // SizedBox(width: AppConstraints.padding),
+                    // AppIconButton(
+                    //   child: const Icon(Icons.more_horiz_rounded),
+                    //   onPressed: () async {
+                    //     return CustomBottomSheet.show<void>(
+                    //       context: context,
+                    //       isScrollControlled: true,
+                    //       child: Padding(
+                    //         padding: EdgeInsets.all(AppConstraints.padding),
+                    //         child: Column(
+                    //           mainAxisSize: MainAxisSize.min,
+                    //           children: [
+                    //             SheetAppBar(
+                    //               title: widget.status.name,
+                    //             ),
+                    //             const Divider(),
+                    //             SizedBox(height: 60.h),
+                    //             AppButton(
+                    //               title: L10n.of(context).delete,
+                    //               textColor: AppColors.red,
+                    //               backgroundColor: AppColors.white,
+                    //               onPressed: () {},
+                    //             ),
+                    //             SizedBox(height: 20.h),
+                    //           ],
+                    //         ),
+                    //       ),
+                    //     );
+                    //   },
+                    // ),
                   ],
                 ),
-                const Divider(height: 2),
+                const Divider(),
                 AppIconButton(
                   child: const Icon(CupertinoIcons.add),
                   onPressed: () async {

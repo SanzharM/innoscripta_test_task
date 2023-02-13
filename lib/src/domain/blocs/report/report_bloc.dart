@@ -86,7 +86,7 @@ class ReportBloc extends Bloc<ReportEvent, ReportState> {
     final timeEntryRepository = sl<TimeEntryRepository>();
 
     BoardEntity boardEntity = await boardRepository.getBoard(boardId);
-    var tasks = await taskRepository.getTasksFromBoard(boardId);
+    var tasks = await taskRepository.getTasks(boardId: boardId);
     for (int i = 0; i < tasks.length; i++) {
       final timeEntries = await timeEntryRepository.getEntries(taskId: tasks[i].id);
       tasks[i] = tasks[i].copyWith(timeEntries: timeEntries);

@@ -96,7 +96,7 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
 
     try {
       final response = await _repository.getBoard(boardEntity.id);
-      List<TaskEntity> tasks = await _taskRepository.getTasksFromBoard(state.board.id);
+      List<TaskEntity> tasks = await _taskRepository.getTasks(boardId: state.board.id);
 
       emit(state.copyWith(
         isLoading: false,

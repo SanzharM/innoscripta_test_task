@@ -5,7 +5,7 @@ import 'package:innoscripta_test_task/src/domain/entities/status/status_entity.d
 import 'package:innoscripta_test_task/src/domain/entities/task/task_entity.dart';
 
 abstract class TaskDataSource {
-  Future<List<TaskEntity>> getTasksFromBoard(int boardId);
+  Future<List<TaskEntity>> getTasks({int? boardId});
 
   Future<TaskEntity> getTask(int id);
 
@@ -74,16 +74,21 @@ class TaskDataSourceImpl implements TaskDataSource {
   }
 
   @override
-  Future<List<TaskEntity>> getTasksFromBoard(int boardId) async {
+  Future<List<TaskEntity>> getTasks({int? boardId}) async {
+    if (boardId == null) {
+      return box.values.toList();
+    }
+
     final result = <TaskEntity>[];
     for (var task in box.values) {
       if (task.boardId == boardId) {
         result.add(task);
       }
     }
-    result.sort(
-      (a, b) => (a.updatedAt ?? a.createdAt).compareTo(b.updatedAt ?? b.createdAt),
-    );
+    result.sort((a, b) {
+      return (a.updatedAt ?? a.createdAt).compareTo(b.updatedAt ?? b.createdAt);
+    });
+
     return result;
   }
 }

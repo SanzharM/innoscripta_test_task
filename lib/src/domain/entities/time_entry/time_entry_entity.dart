@@ -67,10 +67,10 @@ class TimeEntryEntity {
     if (identical(this, other)) return true;
 
     return other is TimeEntryEntity &&
-        other.startTime == startTime &&
+        other.startTime.millisecondsSinceEpoch == startTime.millisecondsSinceEpoch &&
         // other.endTime == endTime &&
         // other.description == description &&
-        other.taskId == taskId &&
+        // other.taskId == taskId &&
         other.isGlobal == isGlobal;
   }
 
