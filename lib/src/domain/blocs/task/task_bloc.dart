@@ -172,6 +172,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
   void _setDeadline(TaskSetDeadlineEvent event, Emitter<TaskState> emit) async {
     try {
       final int id = state.task.id;
+      await notificationService.removeScheduledNotification(id);
       await notificationService.showScheduledNotification(
         id: id,
         title: state.task.name,
@@ -183,6 +184,7 @@ class TaskBloc extends Bloc<TaskEvent, TaskState> {
         title: state.task.name,
         body: 'New deadline was set: ${event.date}',
       );
+      emit(TaskDeadlineSetState(task: state.task, board: state.board));
     } catch (e) {
       debugPrint('TaskSetDeadlineEvent error: $e');
     }

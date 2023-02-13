@@ -60,3 +60,10 @@ class TaskDoneState extends TaskState {
     super.board,
   });
 }
+
+class TaskDeadlineSetState extends TaskState {
+  TaskDeadlineSetState({
+    required super.task,
+    super.board,
+  });
+}

@@ -47,5 +47,9 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSCalendarsUsageDescription</key>
+	<string>By allowing calendar usage, you will be able to see deadlines in your Calendar app</string>
+	<key>NSContactsUsageDescription</key>
+	<string>By allowing contacts usage, you will be able to see deadlines in your Calendar app</string>
 </dict>
 </plist>

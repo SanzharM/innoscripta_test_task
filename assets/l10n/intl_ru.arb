@@ -6,6 +6,7 @@
     "delete": "Удалить",
     "home": "Главная",
     "board": "Доска",
+    "boards": "Доски",
     "newBoard": "Новая доска",
     "boardAdded": "Доска добавлена",
     "boardUpdated": "Доска обновлена",
@@ -52,9 +53,27 @@
     "connectToAnotherTask": "Привязать к другой задаче",
     "currentTimeTracking": "Текущая отметка времени",
     "pressButtonToStartTracking": "Нажмите на кнопку \"Старт\", чтобы начать отмечать время",
+    "pressToAddToCalendar": "Нажмите здесь, чтобы добавить {something} в календарь",
+    "@pressToAddToCalendar": {
+        "placeholders": {
+            "something": {
+                "type": "String"
+            }
+        }
+    },
     "report": "Отчет",
     "reports": "Отчеты",
     "generateCsv": "Сгенерировать отчет в CSV файле",
     "exportHistoryTimeTracks": "Экспортировать историю",
-    "exportBoard": "Экспортировать доску"
+    "exportBoard": "Экспортировать доску",
+    "totalHours": "{value}ч",
+    "@totalHours": {
+        "placeholders": {
+            "value": {
+                "type": "double",
+                "example": "32,5"
+            }
+        }
+    },
+    "info": "Инфо"
 }

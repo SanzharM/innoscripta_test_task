@@ -20,6 +20,11 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
+  static String m0(something) =>
+      "Нажмите здесь, чтобы добавить ${something} в календарь";
+
+  static String m1(value) => "${value}ч";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add": MessageLookupByLibrary.simpleMessage("Добавить"),
@@ -29,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "boardAdded": MessageLookupByLibrary.simpleMessage("Доска добавлена"),
         "boardDeleted": MessageLookupByLibrary.simpleMessage("Доска удалена"),
         "boardUpdated": MessageLookupByLibrary.simpleMessage("Доска обновлена"),
+        "boards": MessageLookupByLibrary.simpleMessage("Доски"),
         "changeTaskStatus":
             MessageLookupByLibrary.simpleMessage("Изменить статус задачи"),
         "clearLocalStorage": MessageLookupByLibrary.simpleMessage(
@@ -55,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "home": MessageLookupByLibrary.simpleMessage("Главная"),
         "howDoYouCallYourBoard":
             MessageLookupByLibrary.simpleMessage("Как бы вы назвали доску?"),
+        "info": MessageLookupByLibrary.simpleMessage("Инфо"),
         "language": MessageLookupByLibrary.simpleMessage("Язык"),
         "languages": MessageLookupByLibrary.simpleMessage("Языки"),
         "lastUpdateDate":
@@ -67,6 +74,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "options": MessageLookupByLibrary.simpleMessage("Опции"),
         "pressButtonToStartTracking": MessageLookupByLibrary.simpleMessage(
             "Нажмите на кнопку \"Старт\", чтобы начать отмечать время"),
+        "pressToAddToCalendar": m0,
         "remove": MessageLookupByLibrary.simpleMessage("Удалить"),
         "report": MessageLookupByLibrary.simpleMessage("Отчет"),
         "reports": MessageLookupByLibrary.simpleMessage("Отчеты"),
@@ -95,6 +103,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Отслеживание времени начато"),
         "today": MessageLookupByLibrary.simpleMessage("Сегодня"),
         "tomorrow": MessageLookupByLibrary.simpleMessage("Завтра"),
+        "totalHours": m1,
         "yes": MessageLookupByLibrary.simpleMessage("Да"),
         "yesterday": MessageLookupByLibrary.simpleMessage("Вчера")
       };

@@ -10,11 +10,13 @@ part 'board_list_state.dart';
 class BoardListBloc extends Bloc<BoardListEvent, BoardListState> {
   void reset() => add(BoardListResetEvent());
   void fetch() => add(BoardListFetchEvent());
+  void refresh() => add(BoardListRefreshEvent());
   void addBoard(String name) => add(BoardListAddEvent(name));
 
   BoardListBloc() : super(const BoardListState()) {
     on<BoardListResetEvent>(_reset);
     on<BoardListFetchEvent>(_fetch);
+    on<BoardListRefreshEvent>(_refresh);
     on<BoardListAddEvent>(_addBoard);
   }
 
@@ -40,6 +42,23 @@ class BoardListBloc extends Bloc<BoardListEvent, BoardListState> {
         total: response.total,
       ));
     } catch (e) {
+      emit(state.copyWith(isLoading: false, error: e.toString()));
+    }
+  }
+
+  void _refresh(BoardListRefreshEvent event, Emitter<BoardListState> emit) async {
+    emit(state.copyWith(isLoading: true));
+
+    try {
+      final response = await _repository.fetchBoards(1);
+      return emit(state.copyWith(
+        isLoading: false,
+        boards: response.items,
+        total: response.total,
+        page: state.page + 1,
+      ));
+    } catch (e) {
+      debugPrint('BoardListRefreshEvent error: $e');
       emit(state.copyWith(isLoading: false, error: e.toString()));
     }
   }

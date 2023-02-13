@@ -28,7 +28,8 @@ class BoardDataSourceImpl implements BoardDataSource {
 
   @override
   Future<PaginatedModel<BoardEntity>> fetchBoards(int page, int perPage) async {
-    var items = List<BoardEntity>.from(box.values);
+    var items = List<BoardEntity>.from(box.values).reversed.toList();
+
     return PaginatedModel<BoardEntity>(
       page: page,
       items: items.pagination(page, perPage: perPage),

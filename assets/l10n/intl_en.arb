@@ -6,6 +6,7 @@
     "delete": "Delete",
     "home": "Home",
     "board": "Board",
+    "boards": "Boards",
     "newBoard": "New board",
     "boardAdded": "Board added",
     "boardUpdated": "Board updated",
@@ -51,10 +52,28 @@
     "sureDelete": "Are you sure you want to delete?",
     "connectToAnotherTask": "Connect to another task",
     "currentTimeTracking": "Current time tracking",
-    "pressButtonToStartTracking": "Нажмите на кнопку \"Старт\", чтобы начать отмечать время",
+    "pressButtonToStartTracking": "Press \"Play\" button to start tracking",
+    "pressToAddToCalendar": "Press here to add {something} to calendar",
+    "@pressToAddToCalendar": {
+        "placeholders": {
+            "something": {
+                "type": "String"
+            }
+        }
+    },
     "report": "Report",
     "reports": "Reports",
     "generateCsv": "Generate report as CSV file",
     "exportHistoryTimeTracks": "Export history time tracks",
-    "exportBoard": "Export board"
+    "exportBoard": "Export board",
+    "totalHours": "{value} hours",
+    "@totalHours": {
+        "placeholders": {
+            "value": {
+                "type": "double",
+                "example": "32,5"
+            }
+        }
+    },
+    "info": "Info"
 }

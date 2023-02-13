@@ -29,3 +29,9 @@ class BoardReorderEvent extends BoardEvent {
 
   BoardReorderEvent(this.from, this.to);
 }
+
+class BoardDeleteEvent extends BoardEvent {
+  final int id;
+
+  BoardDeleteEvent(this.id);
+}

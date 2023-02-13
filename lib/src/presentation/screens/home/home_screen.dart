@@ -6,7 +6,6 @@ import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
 import 'package:innoscripta_test_task/src/presentation/app_router.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/home/components/board_list_builder.dart';
-import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_button.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/custom_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -47,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: RefreshIndicator(
         onRefresh: () async {
           await Future.delayed(const Duration(milliseconds: 500));
-          _boardsBloc.fetch();
+          _boardsBloc.refresh();
         },
         child: NestedScrollView(
           physics: const BouncingScrollPhysics(),
@@ -63,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              AppButton(
+              CupertinoButton(
                 alignment: Alignment.centerLeft,
                 padding: EdgeInsets.only(left: AppConstraints.padding),
                 child: Row(
@@ -73,6 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     Flexible(
                       child: Text(
                         L10n.of(context).newBoard,
+                        style: Theme.of(context).textTheme.bodyLarge?.apply(
+                              color: Theme.of(context).primaryColor,
+                            ),
                       ),
                     ),
                   ],
@@ -81,7 +83,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   context.router.toAddBoardScreen();
                 },
               ),
-              const BoardListBuilder(),
+              const Divider(),
+              const Expanded(
+                child: BoardListBuilder(),
+              ),
             ],
           ),
         ),

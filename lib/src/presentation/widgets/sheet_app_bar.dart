@@ -36,6 +36,7 @@ class SheetAppBar extends StatelessWidget {
               opacity: 0.0,
               child: AppIconButton.close(context),
             ),
+            SizedBox(width: AppConstraints.padding),
             Expanded(
               child: Text(
                 title,

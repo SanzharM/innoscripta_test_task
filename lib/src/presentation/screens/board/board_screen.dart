@@ -9,9 +9,12 @@ import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
 import 'package:innoscripta_test_task/src/core/services/alert_controller.dart';
 import 'package:innoscripta_test_task/src/core/services/utils.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/board/board_bloc.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/entities/status/status_entity.dart';
 import 'package:innoscripta_test_task/src/domain/entities/task/task_entity.dart';
+import 'package:innoscripta_test_task/src/presentation/app_router.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/board/components/add_task_widget.dart';
+import 'package:innoscripta_test_task/src/presentation/screens/board/components/board_info_widget.dart';
 import 'package:innoscripta_test_task/src/presentation/screens/board/components/task_widget.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/bottom_sheet/custom_bottom_sheet.dart';
 import 'package:innoscripta_test_task/src/presentation/widgets/buttons/app_button.dart';
@@ -48,6 +51,14 @@ class _BoardScreenState extends State<BoardScreen> {
         if (state.error.isNotEmpty) {
           return AlertController.showMessage(state.error);
         }
+        if (state is BoardDeletedState) {
+          context.read<BoardListBloc>().refresh();
+          context.router.popUntil((route) => route.isFirst);
+          return AlertController.showMessage(
+            L10n.of(context).boardDeleted,
+            isSuccess: true,
+          );
+        }
       },
       builder: (context, state) {
         final board = state.board;
@@ -57,7 +68,22 @@ class _BoardScreenState extends State<BoardScreen> {
             actions: [
               AppIconButton(
                 child: const Icon(CupertinoIcons.info),
-                onPressed: () {},
+                onPressed: () async {
+                  return CustomBottomSheet.show<void>(
+                    context: context,
+                    isScrollControlled: true,
+                    child: BlocProvider.value(
+                      value: context.read<BoardBloc>(),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints(
+                          maxHeight: MediaQuery.of(context).size.height * 0.87,
+                          minHeight: MediaQuery.of(context).size.height * 0.33,
+                        ),
+                        child: const BoardInfoWidget(),
+                      ),
+                    ),
+                  );
+                },
               ),
             ],
           ),

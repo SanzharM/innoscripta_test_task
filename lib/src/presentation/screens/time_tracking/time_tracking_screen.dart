@@ -7,6 +7,7 @@ import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
 import 'package:innoscripta_test_task/src/core/services/alert_controller.dart';
 import 'package:innoscripta_test_task/src/core/services/utils.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
+import 'package:innoscripta_test_task/src/domain/blocs/nav_bar/nav_bar_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/report/report_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/time_tracking/time_tracking_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/time_tracking_history/time_tracking_history_bloc.dart';
@@ -161,7 +162,7 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> with TickerProv
                           subtitle: L10n.of(context).generateCsv,
                           isLoading: isLoading,
                           onPressed: () {
-                            // if (isLoading) return;
+                            if (isLoading) return;
                             final boards = context.read<BoardListBloc>().state.boards;
                             return _showBoards(boards);
                           },
@@ -236,38 +237,49 @@ class _TimeTrackingScreenState extends State<TimeTrackingScreen> with TickerProv
         children: [
           Padding(
             padding: EdgeInsets.all(AppConstraints.padding),
-            child: SheetAppBar(title: L10n.of(context).board),
+            child: SheetAppBar(title: L10n.of(context).boards),
           ),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.only(bottom: AppConstraints.padding),
-            itemCount: boards.length,
-            itemBuilder: (_, i) {
-              final board = boards.elementAt(i);
-              return AppCell(
-                title: board.name,
-                subtitle: Utils.formatDate(board.createdAt),
-                leading: Container(
-                  padding: const EdgeInsets.all(8.0),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Theme.of(context).highlightColor,
+          if (boards.isEmpty) ...[
+            CupertinoButton(
+              child: Text(L10n.of(context).add),
+              onPressed: () {
+                context.read<NavBarBloc>().changeTab(0);
+                context.router.back();
+                context.router.toAddBoardScreen();
+              },
+            ),
+            SizedBox(height: AppConstraints.padding),
+          ] else
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              padding: EdgeInsets.only(bottom: AppConstraints.padding),
+              itemCount: boards.length,
+              itemBuilder: (_, i) {
+                final board = boards.elementAt(i);
+                return AppCell(
+                  title: board.name,
+                  subtitle: Utils.formatDate(board.createdAt),
+                  leading: Container(
+                    padding: const EdgeInsets.all(8.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Theme.of(context).highlightColor,
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(
+                      (i + 1).toString(),
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.bodySmall,
+                    ),
                   ),
-                  alignment: Alignment.center,
-                  child: Text(
-                    (i + 1).toString(),
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ),
-                onPressed: () {
-                  context.read<ReportBloc>().generateBoardReport(board.id);
-                  context.router.back();
-                },
-              );
-            },
-          ),
+                  onPressed: () {
+                    context.read<ReportBloc>().generateBoardReport(board.id);
+                    context.router.back();
+                  },
+                );
+              },
+            ),
         ],
       ),
     );

@@ -120,6 +120,16 @@ class S {
     );
   }
 
+  /// `Boards`
+  String get boards {
+    return Intl.message(
+      'Boards',
+      name: 'boards',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `New board`
   String get newBoard {
     return Intl.message(
@@ -570,13 +580,23 @@ class S {
     );
   }
 
-  /// `Нажмите на кнопку "Старт", чтобы начать отмечать время`
+  /// `Press "Play" button to start tracking`
   String get pressButtonToStartTracking {
     return Intl.message(
-      'Нажмите на кнопку "Старт", чтобы начать отмечать время',
+      'Press "Play" button to start tracking',
       name: 'pressButtonToStartTracking',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Press here to add {something} to calendar`
+  String pressToAddToCalendar(String something) {
+    return Intl.message(
+      'Press here to add $something to calendar',
+      name: 'pressToAddToCalendar',
+      desc: '',
+      args: [something],
     );
   }
 
@@ -625,6 +645,26 @@ class S {
     return Intl.message(
       'Export board',
       name: 'exportBoard',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{value} hours`
+  String totalHours(double value) {
+    return Intl.message(
+      '$value hours',
+      name: 'totalHours',
+      desc: '',
+      args: [value],
+    );
+  }
+
+  /// `Info`
+  String get info {
+    return Intl.message(
+      'Info',
+      name: 'info',
       desc: '',
       args: [],
     );

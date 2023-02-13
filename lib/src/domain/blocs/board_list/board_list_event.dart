@@ -7,6 +7,8 @@ class BoardListResetEvent extends BoardListEvent {}
 
 class BoardListFetchEvent extends BoardListEvent {}
 
+class BoardListRefreshEvent extends BoardListEvent {}
+
 class BoardListAddEvent extends BoardListEvent {
   final String name;
 

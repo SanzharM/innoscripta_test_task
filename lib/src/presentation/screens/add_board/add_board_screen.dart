@@ -68,6 +68,7 @@ class _AddBoardScreenState extends State<AddBoardScreen> {
         floatingActionButton: BlocConsumer<BoardListBloc, BoardListState>(
           listener: (context, state) {
             if (state is BoardListAddedState) {
+              context.read<BoardListBloc>().refresh();
               context.router.back();
               return AlertController.showMessage(L10n.of(context).boardAdded, isSuccess: true);
             }

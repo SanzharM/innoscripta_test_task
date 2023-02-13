@@ -15,7 +15,7 @@ class BoardListState {
     this.error = '',
   });
 
-  bool get canLoadMore => boards.length < total;
+  bool get canLoadMore => boards.length <= total;
 
   BoardListState copyWith({
     List<BoardEntity>? boards,

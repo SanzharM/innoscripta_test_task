@@ -32,6 +32,15 @@ extension XSortedTaskList on List<TaskEntity> {
     }
     return result;
   }
+
+  double get totalSpentHours {
+    int seconds = 0;
+    for (var task in this) {
+      seconds += task.timeEntries.totalSpentTime.inSeconds;
+    }
+
+    return double.parse((seconds / 60 / 60).toStringAsPrecision(2));
+  }
 }
 
 extension XDateTime on DateTime {

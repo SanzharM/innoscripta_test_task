@@ -2,10 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:innoscripta_test_task/src/core/constants/app_constraints.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:innoscripta_test_task/src/core/constants/constants.dart';
 import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
 import 'package:innoscripta_test_task/src/core/services/alert_controller.dart';
+import 'package:innoscripta_test_task/src/core/services/calendar_service.dart';
 import 'package:innoscripta_test_task/src/core/services/utils.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/task/task_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/entities/status/status_entity.dart';
@@ -28,12 +29,15 @@ class TaskScreen extends StatefulWidget {
 }
 
 class _TaskScreenState extends State<TaskScreen> {
+  FToast fToast = FToast();
+
   @override
   void initState() {
     super.initState();
     context.read<TaskBloc>().get(
           context.read<TaskBloc>().state.task,
         );
+    fToast.init(context);
   }
 
   @override
@@ -56,6 +60,37 @@ class _TaskScreenState extends State<TaskScreen> {
           return AlertController.showMessage(
             L10n.of(context).taskDone,
             isSuccess: true,
+          );
+        }
+        if (state is TaskDeadlineSetState && state.task.deadline != null) {
+          return fToast.showToast(
+            fadeDuration: Utils.animationDuration,
+            toastDuration: const Duration(seconds: 3),
+            gravity: ToastGravity.TOP,
+            child: GestureDetector(
+              onTap: () async {
+                await CalendarService.addEvent(
+                  title: state.task.name,
+                  startDate: state.task.deadline!,
+                  description: state.task.description,
+                );
+              },
+              child: Container(
+                padding: EdgeInsets.all(AppConstraints.padding),
+                decoration: const BoxDecoration(
+                  color: AppColors.greenLight,
+                  borderRadius: AppConstraints.borderRadius,
+                ),
+                child: Text(
+                  L10n.of(context).pressToAddToCalendar(
+                    L10n.of(context).deadline,
+                  ),
+                  style: theme.textTheme.titleSmall?.apply(
+                    color: theme.primaryColor,
+                  ),
+                ),
+              ),
+            ),
           );
         }
       },

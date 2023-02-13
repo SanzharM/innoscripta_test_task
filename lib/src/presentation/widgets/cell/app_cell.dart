@@ -12,6 +12,7 @@ class AppCell extends StatelessWidget {
     this.leading,
     this.isLoading = false,
     this.boxDecoration,
+    this.padding,
     this.onPressed,
   });
 
@@ -21,6 +22,7 @@ class AppCell extends StatelessWidget {
   final Widget? leading;
   final bool isLoading;
   final BoxDecoration? boxDecoration;
+  final EdgeInsets? padding;
   final void Function()? onPressed;
 
   @override
@@ -31,7 +33,7 @@ class AppCell extends StatelessWidget {
       onPressed: onPressed,
       child: Container(
         decoration: boxDecoration,
-        padding: EdgeInsets.all(AppConstraints.padding),
+        padding: padding ?? EdgeInsets.all(AppConstraints.padding),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

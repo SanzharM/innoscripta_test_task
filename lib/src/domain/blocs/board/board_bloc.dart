@@ -5,17 +5,20 @@ import 'package:innoscripta_test_task/src/domain/entities/status/status_entity.d
 import 'package:innoscripta_test_task/src/domain/entities/task/task_entity.dart';
 import 'package:innoscripta_test_task/src/domain/repositories/board/board_repository.dart';
 import 'package:innoscripta_test_task/src/domain/repositories/task/task_repository.dart';
+import 'package:innoscripta_test_task/src/domain/repositories/time_entry/time_entry_repository.dart';
 import 'package:innoscripta_test_task/src/service_locator.dart';
 
 part 'board_event.dart';
 part 'board_state.dart';
 
 class BoardBloc extends Bloc<BoardEvent, BoardState> {
+  // void initial() => add(BoardInitialEvent());
   void changeColumnIndex(int index) => add(BoardChangeColumnIndexEvent(index));
   void update(BoardEntity board) => add(BoardUpdateEvent(board));
   void createTask(String name) => add(BoardCreateTaskEvent(name));
   void fetch() => add(BoardFetchEvent());
   void reorder(int from, int to) => add(BoardReorderEvent(from, to));
+  void delete(int id) => add(BoardDeleteEvent(id));
 
   BoardBloc(this.boardEntity)
       : super(BoardState(
@@ -27,11 +30,13 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
     on<BoardCreateTaskEvent>(_createTask);
     on<BoardFetchEvent>(_fetch);
     on<BoardReorderEvent>(_reorder);
+    on<BoardDeleteEvent>(_delete);
   }
 
   final BoardEntity boardEntity;
   final _repository = sl<BoardRepository>();
   final _taskRepository = sl<TaskRepository>();
+  final _timeEntryRepository = sl<TimeEntryRepository>();
 
   void _updateBoard(BoardUpdateEvent event, Emitter<BoardState> emit) async {
     if (state.isLoading) return;
@@ -91,9 +96,17 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
 
     try {
       final response = await _repository.getBoard(boardEntity.id);
-      final tasks = await _taskRepository.getTasksFromBoard(state.board.id);
+      List<TaskEntity> tasks = await _taskRepository.getTasksFromBoard(state.board.id);
+
       emit(state.copyWith(
         isLoading: false,
+        board: response.copyWith(tasks: tasks),
+      ));
+      for (int i = 0; i < tasks.length; i++) {
+        final timeEntries = await _timeEntryRepository.getEntries(taskId: tasks[i].id);
+        tasks[i] = tasks[i].copyWith(timeEntries: timeEntries);
+      }
+      emit(state.copyWith(
         board: response.copyWith(tasks: tasks),
       ));
     } catch (e) {
@@ -109,5 +122,28 @@ class BoardBloc extends Bloc<BoardEvent, BoardState> {
       ..removeAt(event.from)
       ..insert(event.to, targetTask);
     return emit(state.copyWith(board: state.board.copyWith(tasks: tasks)));
+  }
+
+  void _delete(BoardDeleteEvent event, Emitter<BoardState> emit) async {
+    emit(state.copyWith(isLoading: true));
+
+    try {
+      final response = await _repository.removeBoard(event.id);
+      if (response) {
+        for (var task in state.board.tasks) {
+          _taskRepository.deleteTask(task);
+          for (var timeEntry in task.timeEntries) {
+            _timeEntryRepository.delete(timeEntry);
+          }
+        }
+        return emit(BoardDeletedState(
+          board: state.board,
+          currentColumnIndex: state.currentColumnIndex,
+        ));
+      }
+      emit(state.copyWith(isLoading: false, error: 'Something went wrong.'));
+    } catch (e) {
+      emit(state.copyWith(isLoading: false, error: e.toString()));
+    }
   }
 }
