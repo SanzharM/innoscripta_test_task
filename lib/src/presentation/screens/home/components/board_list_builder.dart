@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:innoscripta_test_task/src/core/constants/app_constraints.dart';
+import 'package:innoscripta_test_task/src/core/l10n/l10n_service.dart';
 import 'package:innoscripta_test_task/src/core/services/utils.dart';
 import 'package:innoscripta_test_task/src/domain/blocs/board_list/board_list_bloc.dart';
 import 'package:innoscripta_test_task/src/domain/entities/board/board_entity.dart';
@@ -30,6 +31,35 @@ class BoardListBuilder extends StatelessWidget {
             itemCount: boards.length,
             separatorBuilder: (_, __) => SizedBox(height: AppConstraints.padding),
             itemBuilder: (context, index) {
+              if (index == 0) {
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    CupertinoButton(
+                      alignment: Alignment.centerLeft,
+                      padding: EdgeInsets.zero,
+                      child: Row(
+                        children: [
+                          const Icon(CupertinoIcons.folder_fill_badge_plus),
+                          SizedBox(width: AppConstraints.padding),
+                          Flexible(
+                            child: Text(
+                              L10n.of(context).newBoard,
+                              style: Theme.of(context).textTheme.bodyLarge?.apply(
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      onPressed: () {
+                        context.router.toAddBoardScreen();
+                      },
+                    ),
+                    const Divider(),
+                  ],
+                );
+              }
               final board = boards.elementAt(index);
               return _BoardCell(boardEntity: board);
             },
