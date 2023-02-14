@@ -101,7 +101,8 @@ class _HistoryTimeTrackWidget extends StatelessWidget {
           AppCell(
             padding: EdgeInsets.zero,
             leading: timeEntry.isActive ? const Icon(CupertinoIcons.timelapse) : const Icon(CupertinoIcons.clock_solid),
-            title: timeEntry.readableFormat,
+            title: '${timeEntry.readableFormat}\n'
+                '${timeEntry.totalHours.toStringAsPrecision(2)}',
             subtitle: Utils.toDayPrefix(context, timeEntry.endTime ?? timeEntry.startTime),
             onPressed: timeEntry.isActive
                 ? null

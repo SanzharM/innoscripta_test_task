@@ -27,6 +27,9 @@ class TimeEntryEntity {
   String get readableFormat => '${Utils.formatDate(startTime, format: 'HH:mm:ss')}'
       ' - '
       '${Utils.formatDate(endTime, format: 'HH:mm:ss') ?? ' ...'}';
+  double get totalHours {
+    return (endTime ?? DateTime.now()).difference(startTime).inSeconds / 60 / 60;
+  }
 
   bool get isActive => endTime == null;
 

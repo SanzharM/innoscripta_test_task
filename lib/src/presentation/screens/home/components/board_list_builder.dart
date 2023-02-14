@@ -34,6 +34,7 @@ class BoardListBuilder extends StatelessWidget {
               if (index == 0) {
                 return Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     CupertinoButton(
                       alignment: Alignment.centerLeft,
